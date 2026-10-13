@@ -104,20 +104,21 @@
   .section-head--inline h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
   .section-head--inline > div { flex: 0 1 auto; }
 
-  /* Services: five boxes side by side. Each box shows its photo faintly behind the text:
-     add it on the box as style="--img: url('assets/images/services/name.jpg')". */
+  /* Services: five cards side by side. Photo fills the top 60%, white text panel the bottom 40%. */
   .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-  .service { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: .9rem; min-height: 320px; padding: 1.5rem 1.25rem; background: var(--surface); }
-  .service::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--img, none) center / cover no-repeat; opacity: .25; transition: opacity .4s var(--ease), transform .6s var(--ease); }
-  .service:hover::before { opacity: .35; transform: scale(1.03); }
-  .service h3 { font-size: 1.375rem; line-height: 1.2; min-height: 2.4em; }
-  .service p { font-size: .875rem; flex: 1; color: var(--text); }
-  @media (max-width: 1023px) {
+  .service { display: grid; grid-template-rows: 3fr 2fr; height: 580px; overflow: hidden; background: var(--white); border: 1px solid var(--rule); }
+  .service-img { min-height: 0; overflow: hidden; background: var(--placeholder); }
+  .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .service:hover .service-img img { transform: scale(1.04); }
+  .service-body { display: flex; flex-direction: column; gap: .6rem; padding: 1.1rem 1.1rem 1.2rem; background: var(--white); }
+  .service h3 { font-size: 1.25rem; line-height: 1.2; }
+  .service p { font-size: .8125rem; line-height: 1.55; flex: 1; color: var(--text); }
+  @media (max-width: 1023px) { .services { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) {
     .services { grid-template-columns: 1fr; }
-    .service { display: grid; grid-template-columns: 2fr 3fr auto; align-items: baseline; gap: 1.5rem; min-height: 0; }
-    .service h3 { min-height: 0; }
+    .service { height: auto; grid-template-rows: auto auto; }
+    .service-img { aspect-ratio: 16 / 10; max-width: 100%; }
   }
-  @media (max-width: 640px) { .service { grid-template-columns: 1fr; gap: .6rem; } }
 
   /* Process: six steps side by side */
   .steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
@@ -227,30 +228,45 @@
         <div><span class="eyebrow">Our services</span><h2>Everything it takes to make your product.</h2></div>
       </div>
       <div class="services">
-        <a class="service hover-title" style="--img: url('assets/images/services/product-design.webp')" href="/services/product-design-development">
-          <h3>Product Design &amp; Development</h3>
-          <p>We turn your idea into a production-ready design, with specs, samples and prototypes signed off before tooling starts.</p>
-          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        <a class="service hover-title" href="/services/product-design-development">
+          <div class="service-img"><img src="assets/images/services/product-design.webp" alt="" loading="lazy"/></div>
+          <div class="service-body">
+            <h3>Product Design &amp; Development</h3>
+            <p>We turn your idea into a production-ready design, with specs, samples and prototypes signed off before tooling starts.</p>
+            <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+          </div>
         </a>
-        <a class="service hover-title" style="--img: url('assets/images/services/sourcing-production.webp')" href="/services/sourcing-production">
-          <h3>Sourcing &amp; Production</h3>
-          <p>Vetted factories, negotiated pricing and production runs we manage on the ground, from first batch to full scale.</p>
-          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        <a class="service hover-title" href="/services/sourcing-production">
+          <div class="service-img"><img src="assets/images/services/sourcing-production.webp" alt="" loading="lazy"/></div>
+          <div class="service-body">
+            <h3>Sourcing &amp; Production</h3>
+            <p>Vetted factories, negotiated pricing and production runs we manage on the ground, from first batch to full scale.</p>
+            <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+          </div>
         </a>
-        <a class="service hover-title" style="--img: url('assets/images/services/quality-control.webp')" href="/services/quality-control">
-          <h3>Quality Control</h3>
-          <p>Inspections before, during and after production, so what ships matches the sample you approved.</p>
-          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        <a class="service hover-title" href="/services/quality-control">
+          <div class="service-img"><img src="assets/images/services/quality-control.webp" alt="" loading="lazy"/></div>
+          <div class="service-body">
+            <h3>Quality Control</h3>
+            <p>Inspections before, during and after production, so what ships matches the sample you approved.</p>
+            <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+          </div>
         </a>
-        <a class="service hover-title" style="--img: url('assets/images/services/logistics.webp')" href="/services/logistics">
-          <h3>Logistics</h3>
-          <p>Freight, customs clearance and final delivery, tracked from the factory floor to your warehouse.</p>
-          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        <a class="service hover-title" href="/services/logistics">
+          <div class="service-img"><img src="assets/images/services/logistics.webp" alt="" loading="lazy"/></div>
+          <div class="service-body">
+            <h3>Logistics</h3>
+            <p>Freight, customs clearance and final delivery, tracked from the factory floor to your warehouse.</p>
+            <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+          </div>
         </a>
-        <a class="service hover-title" style="--img: url('assets/images/services/consulting.webp')" href="/services/consulting">
-          <h3>Consulting</h3>
-          <p>Supply chain strategy and expert guidance to lower your costs, risk and lead times.</p>
-          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        <a class="service hover-title" href="/services/consulting">
+          <div class="service-img"><img src="assets/images/services/consulting.webp" alt="" loading="lazy"/></div>
+          <div class="service-body">
+            <h3>Consulting</h3>
+            <p>Supply chain strategy and expert guidance to lower your costs, risk and lead times.</p>
+            <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+          </div>
         </a>
       </div>
     </div>
