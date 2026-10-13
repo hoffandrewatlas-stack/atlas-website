@@ -80,10 +80,11 @@
 
   /* ---- Banner ---- */
   .banner { position: relative; max-width: 1440px; margin: 0 auto; height: clamp(460px, 72vh, 680px); background: var(--banner); overflow: hidden; }
-  .banner > img, .banner > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .banner > img, .banner > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.85); }  /* 15% darker so the title stands out */
   .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.1) 100%); }
   .banner .container { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
   .banner h1 { color: var(--white); font-weight: 800; letter-spacing: -.03em; font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
+  .banner h1 span { color: var(--orange); }
   .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
 
   /* ---- Split row (closing call to action) ---- */
@@ -218,7 +219,7 @@
       <source src="assets/video/banner.mp4" type="video/mp4"/>
     </video>
     <div class="container">
-      <h1>Mass Production Made Simple</h1>
+      <h1>Mass Production <span>Made Simple</span></h1>
       <p>From concept to customer.</p>
       <div><a class="btn" href="/start-your-project#project-form">Start your project
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
