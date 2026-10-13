@@ -285,3 +285,13 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .talk { margin-top: 1.75rem; font-size: .9375rem; }
 .talk a { color: var(--ink); font-weight: 600; border-bottom: 1px solid var(--orange); }
 .talk a:hover { color: var(--orange-dark); }
+
+/* About page */
+.prose-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
+.prose-cols p { font-size: 1rem; line-height: 1.7; max-width: 36rem; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 2.5rem; }
+.facts li { padding: 1.5rem; background: var(--surface); }
+.facts strong { display: block; font-size: clamp(2rem, 3.4vw, 2.75rem); font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--orange); font-variant-numeric: tabular-nums; }
+.facts span { display: block; margin-top: .6rem; font-size: .875rem; }
+@media (max-width: 860px) { .prose-cols { grid-template-columns: 1fr; } .facts { grid-template-columns: 1fr 1fr; } }
+.faq--page { margin-top: 1rem; }
