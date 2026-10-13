@@ -85,25 +85,11 @@
   .banner h1 { color: var(--white); font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
   .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
 
-  /* ---- Intro row (PwC-style split) ---- */
+  /* ---- Split row (closing call to action) ---- */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 2.5rem 0 3rem; border-top: 1px solid var(--rule); }
   .split h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); line-height: 1.15; }
   .split p { font-size: .9375rem; margin-bottom: 1.5rem; max-width: 36rem; }
   @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 1.25rem; } }
-  .intro { margin-top: 1.25rem; }
-
-  .stats { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-  .stats li { padding: 1.5rem 1.25rem; border-left: 1px solid var(--rule); }
-  .stats li:first-child { border-left: 0; padding-left: 0; }
-  .stats strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.1; color: var(--ink); }
-  .stats span { display: block; font-size: .8125rem; color: var(--muted); margin-top: .35rem; }
-  @media (max-width: 900px) {
-    .stats { grid-template-columns: 1fr 1fr; }
-    .stats li, .stats li:first-child { padding: 1.25rem 0; border-left: 0; border-top: 1px solid var(--rule); }
-    .stats li:nth-child(-n+2) { border-top: 0; }
-    .stats li:nth-child(even) { padding-left: 1.25rem; border-left: 1px solid var(--rule); }
-    .stats li:last-child:nth-child(odd) { grid-column: 1 / -1; }
-  }
 
   /* ---- Sections ---- */
   .section { padding: 5.5rem 0 0; }
@@ -231,31 +217,11 @@
     </div>
   </section>
 
-  <!-- Intro -->
-  <div class="container intro">
-    <div class="split">
-      <h2>One partner. Every step.<br/> Zero fragmentation.</h2>
-      <div>
-        <p>The Atlas Network manages your product end-to-end - concept and design, manufacturing, quality control, global logistics, customs and delivery.</p>
-        <a class="btn" href="#services">Explore our services
-          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
-      </div>
-    </div>
-    <ul class="stats">
-      <li><strong>20+</strong><span>Years of experience</span></li>
-      <li><strong>70+</strong><span>Clients worldwide</span></li>
-      <li><strong>A–Z</strong><span>End-to-end supply chain</span></li>
-      <li><strong>Global</strong><span>Reach, local expertise</span></li>
-      <li><strong>Alibaba</strong><span>First US-based verified supplier</span></li>
-    </ul>
-  </div>
-
   <!-- Our services -->
   <section id="services" class="section">
     <div class="container">
       <div class="section-head">
         <div><span class="eyebrow">Our services</span><h2>Everything it takes to make your product.</h2></div>
-        <p>Use one service or all five. Either way you get a single team that is accountable for the result.</p>
       </div>
       <div class="services">
         <a class="service hover-title" href="/services/product-design-development">
@@ -284,6 +250,8 @@
           <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
         </a>
       </div>
+      <div class="section-foot"><a class="btn" href="/services">Explore our services
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
