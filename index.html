@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#0D2137"/>
+<title>The Atlas Network - End-to-End Supply Chain. From Concept to Customer.</title>
+<meta name="description" content="The Atlas Network is a full-service supply chain company that manages your product end-to-end - concept and design, manufacturing, quality control, global logistics, customs and delivery. One partner, zero fragmentation."/>
+<meta name="robots" content="noindex, follow"/>
+<!-- Static rendering of the production homepage. Assets are loaded from the
+     live site when reachable; the fallbacks below keep the layout intact when not. -->
+<base href="https://theatlasnetwork.sitecare.org/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: '#0D2137',
+        orange: { DEFAULT: '#F26B21', 500: '#F26B21', 600: '#D9581A' },
+        graybg: '#F3F4F6',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Sans"', 'Inter', 'sans-serif'],
+        'space-g': ['"Space Grotesk"', 'sans-serif'],
+        'dm-sans': ['"DM Sans"', 'sans-serif'],
+      },
+      maxWidth: { '8xl': '88rem' },
+    },
+  },
+};
+</script>
+<style>
+  body { background: #fff; color: #0D2137; font-family: Inter, system-ui, sans-serif; }
+  .section { padding: 4rem 0; }
+  @media (min-width: 1024px) { .section { padding: 6rem 0; } }
+
+  /* Missing-image fallbacks */
+  .img-missing { display: none !important; }
+  .photo-fallback { background: linear-gradient(135deg, #16365a 0%, #0D2137 55%, #F26B21 160%); }
+  .logo-text { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: .02em; }
+
+  /* Header */
+  .headewrapper { background: rgba(255,255,255,.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(13,33,55,.06); }
+  .button { display: inline-flex; align-items: center; gap: .5rem; }
+  .button svg { width: 1.25rem; height: 1.25rem; stroke: currentColor; }
+  #mobile-menu.open { display: flex; flex-direction: column; gap: 1rem; position: absolute; top: 100%; left: 0; right: 0; background: #fff; padding: 1.5rem 1rem; box-shadow: 0 10px 30px rgba(0,0,0,.08); max-height: 80vh; overflow: auto; }
+
+  /* Hero */
+  .banner-sec { min-height: 640px; }
+  .banner-sec > img { position: absolute; inset: 0; }
+  .from-white-transparent { --tw-gradient-to: rgba(255,255,255,0) var(--tw-gradient-to-position); }
+  .hero-glow { position: absolute; inset: 0; background: radial-gradient(60% 60% at 75% 45%, rgba(242,107,33,.18), transparent 70%); z-index: 1; }
+  .hero-grid { position: absolute; inset: 0; z-index: 1; opacity: .35;
+    background-image: linear-gradient(rgba(13,33,55,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(13,33,55,.06) 1px, transparent 1px);
+    background-size: 48px 48px; }
+  .hero-bubble { position: absolute; right: 0; top: 10%; width: 52vw; height: 80%; z-index: 5; }
+  .hero-stage { background: radial-gradient(80% 70% at 80% 50%, #dfe8f3 0%, #f6f8fb 60%, #fff 100%); }
+  .banner-inner { max-width: 640px; }
+  .banner-inner hr { width: 4rem; border: 0; height: 2px; background: #F26B21; margin: 1.5rem 0; }
+  .banner-inner h1 { color: #0D2137; line-height: 1; letter-spacing: -.02em; font-family: "Space Grotesk", sans-serif; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  .playbtn { position: absolute; z-index: 20; right: 6%; bottom: 8%; display: flex; align-items: center; gap: 1rem; color: #0D2137; font-weight: 600; font-size: .9rem; line-height: 1.35; }
+  .playbtn .icon { width: 56px; height: 56px; border-radius: 9999px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(13,33,55,.15); }
+  .playbtn .icon svg { width: 18px; height: 18px; margin-left: 3px; }
+  .playbtn .icon svg path { fill: #F26B21; }
+  .scroll-cue { position: absolute; left: 50%; bottom: 1.5rem; z-index: 20; }
+  .scroll-cue-line { display: block; width: 1px; height: 48px; background: linear-gradient(#0D2137, transparent); }
+  @media (max-width: 1023px) { .playbtn { display: none; } .hero-bubble { opacity: .35; width: 100%; } }
+
+  /* Stats */
+  .sucess-sec { padding: 0; margin-top: -1px; }
+  .inner-sucess-sec { position: relative; background: #0D2137; padding: 2.5rem 0; overflow: hidden; }
+  .sucess-curve-bg { position: absolute; inset: 0; opacity: .25; }
+  .stat-icon img { filter: brightness(0) invert(1); opacity: .9; }
+  .stat-icon { width: 50px; height: 50px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; }
+  .stat-icon img { width: 28px; height: 28px; }
+
+  /* Solutions */
+  .network-surface { background: linear-gradient(180deg, #F3F4F6 0%, #fff 100%); }
+  .sol-tabs { scrollbar-width: none; }
+
+  /* Process / journey */
+  .journey-stage { width: min(1000px, 100%); height: 600px; }
+  .orbit { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .journey-path { stroke-dashoffset: 0 !important; }
+  .bottle-wrap { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 220px; height: 380px; display: flex; align-items: center; justify-content: center;
+    border-radius: 9999px; background: radial-gradient(circle, rgba(242,107,33,.12), transparent 70%); }
+  .bottle-img { max-height: 100%; max-width: 100%; object-fit: contain; }
+  .point { position: absolute; display: flex; align-items: center; gap: 1rem; width: 300px; }
+  .point .icon-circle { flex: none; width: 64px; height: 64px; border-radius: 9999px; display: flex; align-items: center; justify-content: center; border: 1px solid #f0e6da; }
+  .point .icon-circle img { width: 28px; height: 28px; }
+  .point h3 { font-weight: 700; color: #0D2137; font-size: 1.05rem; }
+  .point p { color: #4b5563; font-size: .875rem; line-height: 1.45; }
+  /* Positions around the ellipse (cx 50%, cy 50%, rx 45%, ry 43%) */
+  .p1 { left: 12%; top: -4%; }
+  .p2 { right: -2%; top: -4%; }
+  .p3 { right: -24%; top: 44%; }
+  .p4 { right: -2%; bottom: -4%; }
+  .p5 { left: 12%; bottom: -4%; }
+  .p6 { left: -16%; top: 44%; }
+  .p6, .p5, .p1 { flex-direction: row; }
+  .journey-swipe { margin-top: 2rem; }
+  .journey-swipe-bottle { display: flex; justify-content: center; height: 220px; margin-bottom: 1.5rem; }
+  .journey-swipe-bottle img { height: 100%; object-fit: contain; }
+  .journey-rail { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: .5rem; scrollbar-width: none; }
+  .journey-slide { flex: 0 0 78%; scroll-snap-align: start; background: #fff; border-radius: 1.25rem; padding: 1.5rem; box-shadow: 0 4px 20px rgba(13,33,55,.06); border: 1px solid #f0e6da; }
+  .journey-slide-num { display: block; color: #F26B21; font-weight: 700; font-size: .8rem; letter-spacing: .1em; }
+  .journey-slide-icon { display: flex; width: 48px; height: 48px; border-radius: 9999px; background: #FFF4EC; align-items: center; justify-content: center; margin: .75rem 0; }
+  .journey-slide-icon img { width: 24px; height: 24px; }
+  .journey-slide h3 { font-weight: 700; color: #0D2137; }
+  .journey-slide p { color: #4b5563; font-size: .9rem; margin-top: .25rem; }
+  .journey-progress { margin-top: 1rem; }
+  .journey-progress-track { height: 3px; background: #ede4d8; border-radius: 3px; }
+  .journey-progress-fill { display: block; height: 100%; background: #F26B21; border-radius: 3px; }
+  .journey-dots { display: none; }
+  .journey-progress-label { margin-top: .5rem; font-size: .8rem; color: #6b7280; }
+
+  /* Work */
+  .work-rail { display: flex; gap: 1rem; overflow-x: auto; margin-top: 1rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .work-rail-card { flex: 0 0 80%; scroll-snap-align: start; }
+  .work-card, .work-rail-card { background: #0D2137; }
+
+  /* Footer */
+  .footerbg { overflow: hidden; }
+  .globe-bg { opacity: .18; height: 100%; }
+  .footer-group summary { list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer; margin-bottom: .75rem; }
+  .footer-group summary::-webkit-details-marker { display: none; }
+  @media (min-width: 1024px) { .footer-group-chev { display: none; } }
+  .footer-contact img, .footer-cols a img[src*="linkedin"], .footer-cols a img[src*="youtube"] { filter: brightness(0) invert(1); opacity: .8; }
+  .bottomfooter { gap: .75rem; }
+</style>
+</head>
+<body>
+
+<header class="fixed inset-x-0 top-0 z-50 headewrapper">
+  <div class="container mx-auto px-4">
+    <nav aria-label="Global" class="relative flex items-center justify-between py-4">
+      <div class="flex lg:flex-1">
+        <a class="-m-1.5 p-1.5 flex items-center" href="/">
+          <span class="sr-only">The Atlas Network</span>
+          <img src="/assets/images/logo.svg" alt="The Atlas Network" class="h-14 w-auto" data-fallback="logo"/>
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5">
+          <span class="sr-only">Open main menu</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0D2137" stroke-width="1.5" aria-hidden="true" class="size-6 w-6 h-6"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden lg:flex lg:items-center lg:gap-x-10">
+        <a class="text-sm/6 uppercase font-bold font-dm-sans text-navy hover:text-orange transition-colors" href="/services">Services</a>
+        <a class="text-sm/6 uppercase font-bold font-dm-sans text-navy hover:text-orange transition-colors" href="/#process">Our Process</a>
+        <a class="text-sm/6 uppercase font-bold font-dm-sans text-navy hover:text-orange transition-colors" href="/case-studies">Case Studies</a>
+        <a class="text-sm/6 uppercase font-bold font-dm-sans text-navy hover:text-orange transition-colors" href="/about-us">About Us</a>
+        <a class="text-sm/6 uppercase font-bold font-dm-sans text-navy hover:text-orange transition-colors" href="/resources">Resources</a>
+        <a class="lg:hidden inline-flex text-sm/6 font-semibold bg-orange px-4 py-2 rounded-full text-white self-start" href="/start-your-project#project-form">Start Your Project →</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a class="button text-sm/6 font-semibold bg-orange px-5 py-2.5 rounded-full text-white hover:bg-orange-600 transition" href="/start-your-project#project-form">Start Your Project <span aria-hidden="true">→</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="banner-sec hero-stage h-screen overflow-hidden relative">
+    <img src="/assets/images/banner-img.webp" alt="" class="w-full h-full object-cover"/>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-bubble" aria-hidden="true">
+      <img src="/assets/images/hero-network-bubble-1520.webp" alt="" class="absolute inset-0 h-full w-full object-contain object-right"/>
+    </div>
+    <div class="flex items-center w-full h-full absolute top-0 left-0 bg-gradient-to-r from-white to-white-transparent z-10">
+      <div class="container mx-auto px-4">
+        <div class="banner-inner pt-16">
+          <small class="block text-base lg:text-xl uppercase font-bold text-navy mb-3 tracking-wide">One Partner. Full Ownership</small>
+          <h1 class="text-5xl lg:text-8xl font-bold mb-4">Your Product.<br/> <span class="text-orange">Delivered.</span></h1>
+          <p class="text-base lg:text-lg text-navy mb-3">From concept to customer.</p>
+          <hr/>
+          <div class="btn-group items-center">
+            <a class="button text-base font-semibold bg-orange px-6 py-3 rounded-full text-white hover:bg-orange-600 transition" href="/start-your-project#project-form">
+              <span>Start Your Project</span>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12H18M18 12L13 7M18 12L13 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="text-sm/6 font-semibold px-1 py-2 text-navy underline underline-offset-4 decoration-navy/25 transition hover:text-orange hover:decoration-orange" href="/services">Explore our services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#process" class="playbtn">
+      <span class="icon"><svg viewBox="0 0 330 330"><path d="M37.728,328.12c2.266,1.256,4.77,1.88,7.272,1.88c2.763,0,5.522-0.763,7.95-2.28l240-149.999 c4.386-2.741,7.05-7.548,7.05-12.72c0-5.172-2.664-9.979-7.05-12.72L52.95,2.28c-4.625-2.891-10.453-3.043-15.222-0.4 C32.959,4.524,30,9.547,30,15v300C30,320.453,32.959,325.476,37.728,328.12z"/></svg></span>
+      <p>One Partner.<br/> Every Step.<br/> Zero Fragmentation.</p>
+    </a>
+    <div class="scroll-cue" aria-hidden="true"><span class="scroll-cue-line"></span></div>
+  </section>
+
+  <!-- Stats -->
+  <section class="sucess-sec">
+    <div class="inner-sucess-sec">
+      <div class="sucess-curve-bg"><img src="/assets/images/sucess-bg.svg" class="w-full h-full object-cover" alt=""/></div>
+      <div class="container mx-auto px-4 relative">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+          <div class="border-white/20 sm:border-r"><div class="flex h-full items-center gap-4 px-4 py-4">
+            <div class="stat-icon shrink-0"><img src="/assets/images/baba.svg" alt=""/></div>
+            <div><h3 class="text-xl font-semibold text-white">Alibaba</h3><p class="text-sm text-gray-300 leading-6">Verified Supplier<br/>First US-Based</p></div>
+          </div></div>
+          <div class="border-white/20 lg:border-r"><div class="flex h-full items-center gap-4 px-4 py-4">
+            <div class="stat-icon shrink-0"><img src="/assets/images/shield.svg" alt=""/></div>
+            <div><h3 class="text-4xl font-bold text-orange-500">20+</h3><p class="text-sm text-gray-300 leading-6">Years of<br/>Experience</p></div>
+          </div></div>
+          <div class="border-white/20 sm:border-r lg:border-r"><div class="flex h-full items-center gap-4 px-4 py-4">
+            <div class="stat-icon shrink-0"><img src="/assets/images/user-world-wide.svg" alt=""/></div>
+            <div><h3 class="text-4xl font-bold text-orange-500">70+</h3><p class="text-sm text-gray-300 leading-6">Clients<br/>Worldwide</p></div>
+          </div></div>
+          <div class="border-white/20 lg:border-r"><div class="flex h-full items-center gap-4 px-4 py-4">
+            <div class="stat-icon shrink-0"><img src="/assets/images/a-z-client-supplychain.svg" alt=""/></div>
+            <div><h3 class="text-4xl font-bold text-orange-500">A–Z</h3><p class="text-sm text-gray-300 leading-6">End-to-End<br/>Supply Chain</p></div>
+          </div></div>
+          <div><div class="flex h-full items-center gap-4 px-4 py-4">
+            <div class="stat-icon shrink-0"><img src="/assets/images/globe.svg" alt=""/></div>
+            <div><h3 class="text-4xl font-bold text-orange-500">Global</h3><p class="text-sm text-gray-300 leading-6">Reach Local<br/>Expertise</p></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="network-surface">
+    <!-- Solutions -->
+    <section class="section">
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-[320px_1fr] gap-6 p-2 lg:p-6 items-start">
+          <div class="flex flex-col justify-between h-full gap-8">
+            <div>
+              <span class="text-orange uppercase text-sm font-semibold tracking-wide">Our Solutions</span>
+              <h2 class="mt-3 text-3xl lg:text-5xl font-space-g text-navy font-bold leading-tight lg:leading-none">Expertise across every category.</h2>
+              <div class="w-12 h-[2px] bg-orange my-5 lg:my-8"></div>
+              <div class="space-y-2 text-navy"><p>Deep category knowledge.</p><p>Global execution.</p><p>Measurable results.</p></div>
+            </div>
+            <a class="button text-sm/6 font-semibold py-2 text-navy hover:text-orange" href="/services"><span>View all services</span>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 12H18M18 12L13 7M18 12L13 17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+          <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+            <!-- card template repeated -->
+            <a class="group block h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl" href="/services/cpg-packaging">
+              <div class="overflow-hidden h-56 photo-fallback"><img src="/assets/images/sol-cpg.png" alt="CPG &amp; Packaging" class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110"/></div>
+              <div class="relative px-4 pb-6 pt-8">
+                <div class="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow transition group-hover:bg-orange"><img src="/assets/images/casino.svg" class="h-6 w-6" alt=""/></div>
+                <h3 class="text-lg font-semibold text-navy group-hover:text-orange">CPG &amp; Packaging</h3>
+                <p class="mt-3 text-gray-600 text-sm leading-6">Smart packaging and sourcing solutions that move from shelves to shoppers.</p>
+              </div>
+            </a>
+            <a class="group block h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl" href="/services/luxury-goods">
+              <div class="overflow-hidden h-56 photo-fallback"><img src="/assets/images/sol-watch.png" alt="Luxury Goods" class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110"/></div>
+              <div class="relative px-4 pb-6 pt-8">
+                <div class="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow transition group-hover:bg-orange"><img src="/assets/images/diamond.svg" class="h-6 w-6" alt=""/></div>
+                <h3 class="text-lg font-semibold text-navy group-hover:text-orange">Luxury Goods</h3>
+                <p class="mt-3 text-gray-600 text-sm leading-6">White-glove supply chain management for premium and luxury brands.</p>
+              </div>
+            </a>
+            <a class="group block h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl" href="/services/apparel-textiles">
+              <div class="overflow-hidden h-56 photo-fallback"><img src="/assets/images/sol-fabric.png" alt="Apparel &amp; Textiles" class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110"/></div>
+              <div class="relative px-4 pb-6 pt-8">
+                <div class="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow transition group-hover:bg-orange"><img src="/assets/images/tshirt.svg" class="h-6 w-6" alt=""/></div>
+                <h3 class="text-lg font-semibold text-navy group-hover:text-orange">Apparel &amp; Textiles</h3>
+                <p class="mt-3 text-gray-600 text-sm leading-6">End-to-end production and logistics for fashion and textile brands.</p>
+              </div>
+            </a>
+            <a class="group block h-full overflow-hidden rounded-2xl bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl" href="/services/innovation">
+              <div class="overflow-hidden h-56 photo-fallback"><img src="/assets/images/sol-tech.png" alt="Innovation" class="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-110"/></div>
+              <div class="relative px-4 pb-6 pt-8">
+                <div class="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow transition group-hover:bg-orange"><img src="/assets/images/bulb-icon.svg" class="h-6 w-6" alt=""/></div>
+                <h3 class="text-lg font-semibold text-navy group-hover:text-orange">Innovation</h3>
+                <p class="mt-3 text-gray-600 text-sm leading-6">AI-powered solutions and emerging tech that drive your edge.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="relative section">
+      <div class="container mx-auto px-4">
+        <div class="text-center">
+          <small class="uppercase text-orange-500 font-semibold tracking-wider">Our Process</small>
+          <h2 class="mt-3 text-3xl lg:text-5xl font-serif font-bold text-[#091B46] leading-tight lg:leading-none">The Atlas A-to-Z Journey</h2>
+          <div class="w-12 h-[2px] bg-orange-500 mx-auto mt-4 lg:mt-6"></div>
+        </div>
+
+        <!-- Mobile: swipe rail -->
+        <div class="lg:hidden journey-swipe">
+          <div class="journey-swipe-bottle"><img src="/assets/images/bottle-img.webp" alt="Product manufactured and delivered by The Atlas Network"/></div>
+          <ol class="journey-rail" aria-label="The six stages, in order">
+            <li class="journey-slide"><span class="journey-slide-num">01</span><span class="journey-slide-icon"><img src="/assets/images/bulb-icon.svg" alt=""/></span><h3>Concept and design</h3><p>Smart solutions start with deep understanding.</p></li>
+            <li class="journey-slide"><span class="journey-slide-num">02</span><span class="journey-slide-icon"><img src="/assets/images/industry-icon.svg" alt=""/></span><h3>Manufacturing</h3><p>Precision production with trusted partners.</p></li>
+            <li class="journey-slide"><span class="journey-slide-num">03</span><span class="journey-slide-icon"><img src="/assets/images/shield-check.svg" alt=""/></span><h3>Quality control</h3><p>Rigorous standards. Zero compromise.</p></li>
+            <li class="journey-slide"><span class="journey-slide-num">04</span><span class="journey-slide-icon"><img src="/assets/images/handshake.svg" alt=""/></span><h3>Ongoing partnership</h3><p>Long-term collaboration that grows with you.</p></li>
+            <li class="journey-slide"><span class="journey-slide-num">05</span><span class="journey-slide-icon"><img src="/assets/images/clipboard.svg" alt=""/></span><h3>Customs and delivery</h3><p>Seamless clearance. On-time, every time.</p></li>
+            <li class="journey-slide"><span class="journey-slide-num">06</span><span class="journey-slide-icon"><img src="/assets/images/globe-orange.svg" alt=""/></span><h3>Global logistics</h3><p>Reliable, efficient delivery across the world.</p></li>
+          </ol>
+          <div class="journey-progress">
+            <div class="journey-progress-track" aria-hidden="true"><span class="journey-progress-fill" style="width:17%"></span></div>
+            <p class="journey-progress-label">Stage 1 of 6 - Concept and design</p>
+          </div>
+        </div>
+
+        <!-- Desktop: orbit -->
+        <div class="journey-stage relative mx-auto mt-12 hidden lg:block">
+          <svg class="orbit" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            <ellipse cx="500" cy="300" rx="450" ry="258" fill="none" stroke="#e2d6c6" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+            <ellipse class="journey-path" cx="500" cy="300" rx="450" ry="258" fill="none" stroke="#c9ab8a" stroke-width="1.5" stroke-dasharray="6 8" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="bottle-wrap"><img src="/assets/images/bottle-img.webp" class="bottle-img" alt="Product manufactured and delivered by The Atlas Network"/></div>
+          <div class="point p1"><div class="icon-circle bg-white shadow"><img src="/assets/images/bulb-icon.svg" alt=""/></div><div><h3>Concept and design</h3><p>Smart solutions start<br/>with deep understanding.</p></div></div>
+          <div class="point p2"><div class="icon-circle bg-white shadow"><img src="/assets/images/industry-icon.svg" alt=""/></div><div><h3>Manufacturing</h3><p>Precision production<br/>with trusted partners.</p></div></div>
+          <div class="point p3"><div class="icon-circle bg-white shadow"><img src="/assets/images/shield-check.svg" alt=""/></div><div><h3>Quality control</h3><p>Rigorous standards.<br/>Zero compromise.</p></div></div>
+          <div class="point p4"><div class="icon-circle bg-white shadow"><img src="/assets/images/handshake.svg" alt=""/></div><div><h3>Ongoing partnership</h3><p>Long-term collaboration<br/>that grows with you.</p></div></div>
+          <div class="point p5"><div class="icon-circle bg-white shadow"><img src="/assets/images/clipboard.svg" alt=""/></div><div><h3>Customs and delivery</h3><p>Seamless clearance.<br/>On-time, every time.</p></div></div>
+          <div class="point p6"><div class="icon-circle bg-white shadow"><img src="/assets/images/globe-orange.svg" alt=""/></div><div><h3>Global logistics</h3><p>Reliable, efficient delivery<br/>across the world.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Featured work -->
+  <section class="pt-12 pb-8 lg:pt-20 lg:pb-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-8xl mx-auto lg:px-4">
+        <div class="bg-white rounded-[70px] p-0 lg:p-10">
+          <div class="grid lg:grid-cols-[280px_1fr] gap-8 items-start">
+            <div class="flex flex-col justify-between h-full">
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-orange-500">Featured Work</span>
+                <h2 class="mt-3 text-3xl lg:text-5xl font-serif font-bold text-[#091B46] leading-tight lg:mt-4">Real results.<br/> Real impact.</h2>
+              </div>
+              <a class="inline-flex items-center gap-3 mt-6 lg:mt-10 font-semibold text-[#091B46] hover:text-orange-500" href="/case-studies">View all case studies
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            </div>
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+              <article class="work-card relative overflow-hidden rounded-3xl group">
+                <div class="absolute inset-0 photo-fallback"><img src="/assets/images/spirits-packagings.webp" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"/></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0D2137] via-[#0D2137]/90 to-[#0D2137]/70"></div>
+                <div class="relative flex flex-col justify-between h-full p-6 min-h-[300px] lg:min-h-[360px]">
+                  <div>
+                    <span class="text-orange-500 uppercase text-xs font-semibold">Spirits &amp; Packaging</span>
+                    <h3 class="mt-3 text-white font-semibold leading-snug text-2xl lg:text-3xl">Premium Packaging for Global Spirits Brands</h3>
+                    <p class="mt-4 text-white/80 text-base leading-7">Custom decorated glass, matched closures and logo shippers across a portfolio of rum, gin, bourbon and tequila brands.</p>
+                  </div>
+                  <span aria-hidden="true" class="mt-6 rounded-full bg-white flex items-center justify-center w-12 h-12"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <a aria-label="Read case study: Premium Packaging for Global Spirits Brands" class="absolute inset-0 z-10" href="/case-studies/premium-packaging-global-spirits-brand"></a>
+              </article>
+              <article class="work-card relative overflow-hidden rounded-3xl group">
+                <div class="absolute inset-0 photo-fallback"><img src="/assets/images/Production-for-Golf-Accessories.webp" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"/></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0D2137] via-[#0D2137]/90 to-[#0D2137]/70"></div>
+                <div class="relative flex flex-col justify-between h-full p-6 min-h-[300px] lg:min-h-[360px]">
+                  <div>
+                    <span class="text-orange-500 uppercase text-xs font-semibold">Golf Accessories</span>
+                    <h3 class="mt-3 text-white font-semibold leading-snug text-2xl lg:text-3xl">End-to-End Production for a Luxury Golf Line</h3>
+                    <p class="mt-4 text-white/80 text-base leading-7">A complete heritage golf collection - hickory-shafted clubs, canvas and leather goods, apparel and gift sets - produced across multiple material streams.</p>
+                  </div>
+                  <span aria-hidden="true" class="mt-6 rounded-full bg-white flex items-center justify-center w-12 h-12"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <a aria-label="Read case study: End-to-End Production for a Luxury Golf Line" class="absolute inset-0 z-10" href="/case-studies/end-to-end-production-golf-accessories"></a>
+              </article>
+              <article class="work-card relative overflow-hidden rounded-3xl group">
+                <div class="absolute inset-0 photo-fallback"><img src="/assets/images/Barware-Product-Launch.webp" alt="" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"/></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-[#0D2137] via-[#0D2137]/90 to-[#0D2137]/70"></div>
+                <div class="relative flex flex-col justify-between h-full p-6 min-h-[300px] lg:min-h-[360px]">
+                  <div>
+                    <span class="text-orange-500 uppercase text-xs font-semibold">Barware Innovation</span>
+                    <h3 class="mt-3 text-white font-semibold leading-snug text-2xl lg:text-3xl">Barware Production for a Bar-Trade Brand</h3>
+                    <p class="mt-4 text-white/80 text-base leading-7">Copper drinkware and professional bartender carry, made to survive nightly service rather than a display shelf.</p>
+                  </div>
+                  <span aria-hidden="true" class="mt-6 rounded-full bg-white flex items-center justify-center w-12 h-12"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </div>
+                <a aria-label="Read case study: Barware Production for a Bar-Trade Brand" class="absolute inset-0 z-10" href="/case-studies/innovative-barware-product-launch"></a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="section bg-white">
+    <div class="container mx-auto px-4">
+      <div class="mb-6 flex flex-wrap items-end justify-between gap-4 lg:mb-14">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-orange-500">Resources</span>
+          <h2 class="mt-3 text-3xl font-serif font-bold leading-none text-navy lg:text-4xl">How global sourcing actually works.</h2>
+          <div class="mt-4 h-[2px] w-12 bg-orange lg:mt-6"></div>
+          <p class="mt-6 text-base leading-8 text-gray-600">Brand films, short lessons on every step of the supply chain, and the press coverage behind them - all in one place.</p>
+        </div>
+        <a class="inline-flex items-center gap-2 rounded-full bg-navy px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange" href="/resources">Visit the resource hub
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4" id="resources"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="relative bg-[#031831] text-white rounded-t-[70px] footerbg">
+  <div class="container mx-auto px-4">
+    <div class="absolute top-0 right-0 w-[45%] globe-bg"><img src="/assets/images/globe-img.webp" class="w-full h-full object-cover" alt=""/></div>
+    <div class="relative max-w-8xl mx-auto px-2 lg:px-8 py-16">
+      <div class="flex flex-wrap lg:flex-nowrap gap-4 items-center justify-between pb-6 border-b border-white/15 lg:gap-8 lg:pb-12">
+        <h2 class="text-2xl lg:text-5xl font-serif font-bold leading-tight">Ready to simplify<br/> your supply chain?</h2>
+        <p class="text-white/70 text-base lg:text-lg">Let's build something<br class="hidden lg:inline"/> great together.</p>
+        <a class="inline-flex items-center gap-3 rounded-full bg-orange px-8 py-4 font-semibold hover:bg-orange-600 transition" href="/start-your-project#project-form">Start Your Project
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="grid gap-y-6 gap-x-10 py-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,1fr)] lg:gap-10 footer-cols">
+        <div>
+          <a aria-label="The Atlas Network - home" href="/"><img src="/assets/images/footer-logo.svg" class="h-12 lg:h-16" alt="The Atlas Network" data-fallback="logo-light"/></a>
+          <p class="text-white/70 leading-7 mt-3 lg:mt-4">One partner. Full ownership.<br class="hidden lg:inline"/> From concept to customer.</p>
+          <div class="flex gap-3 mt-4 lg:mt-6">
+            <a href="https://www.linkedin.com/in/theatlasnetwork/" aria-label="LinkedIn" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs font-bold">in</a>
+            <a href="https://www.youtube.com/@theatlasnetworkllc596" aria-label="YouTube" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs font-bold">▶</a>
+          </div>
+        </div>
+        <details open class="footer-group"><summary><h3 class="uppercase text-sm font-semibold">Services</h3><svg class="footer-group-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <ul class="space-y-3 text-white/70">
+            <li><a href="/services/product-design-development">Product Design &amp; Development</a></li>
+            <li><a href="/services/sourcing-production">Sourcing &amp; Production</a></li>
+            <li><a href="/services/quality-logistics">Quality &amp; Logistics</a></li>
+            <li><a href="/services/consulting">Consulting</a></li>
+            <li><a href="/services/cpg-packaging">CPG &amp; Packaging</a></li>
+            <li><a href="/services/luxury-goods">Luxury Goods</a></li>
+            <li><a href="/services/apparel-textiles">Apparel &amp; Textiles</a></li>
+            <li><a href="/services/innovation">Innovation</a></li>
+          </ul></details>
+        <details open class="footer-group"><summary><h3 class="uppercase text-sm font-semibold">Company</h3><svg class="footer-group-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <ul class="space-y-3 text-white/70"><li><a href="/about-us">About Us</a></li><li><a href="/#process">Our Process</a></li><li><a href="/careers">Careers</a></li><li><a href="/contact">Contact Us</a></li></ul></details>
+        <details open class="footer-group"><summary><h3 class="uppercase text-sm font-semibold">Resources</h3><svg class="footer-group-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <ul class="space-y-3 text-white/70"><li><a href="/resources">Resource Hub</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="/faqs">FAQs</a></li></ul></details>
+        <div class="footer-contact">
+          <h3 class="uppercase text-sm font-semibold mb-3">Contact</h3>
+          <ul class="space-y-3 text-white/70 lg:space-y-4">
+            <li>New York, NY, USA</li>
+            <li><a href="mailto:contact@theatlasnetwork.com">contact@theatlasnetwork.com</a></li>
+            <li><a href="tel:+12122684947">+1 (212) 268-4947</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-4 border-t border-white/15 text-xs text-white/50 bottomfooter lg:text-sm">
+        <p>© 2026 The Atlas Network. All rights reserved.</p>
+        <div class="flex flex-wrap justify-center gap-x-5 gap-y-1 lg:gap-x-8"><a href="/privacy-policy">Privacy Policy</a><a href="/terms-of-service">Terms of Service</a><a href="/sms-disclosure">SMS Disclosure</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Resource cards (data taken from the page's server payload)
+  const resources = [
+    { title: 'THE ATLAS NETWORK: Corporate Promotional Video', type: 'Video', category: 'Storytelling', img: '/api/images/resources/storytelling/the-atlas-network-corporate-promotional-video.jpg', href: 'https://www.youtube.com/watch?v=UzMu9EwKiuA' },
+    { title: 'Navigating the Future: The Argument for International AI Guardrails in Supply Chain Management', type: 'Article', category: 'Press & Media', img: '/api/images/resources/press-media/navigating-the-future-the-argument-for-international-ai-guardrails-in-supply-chain-management.png', href: 'https://www.usatoday.com/story/special/contributor-content/2024/04/05/navigating-the-future-the-argument-for-international-ai-guardrails-in-supply-chain-management/73221949007/', meta: '4 April 2024 · usatoday.com' },
+    { title: 'Risk & Reward Episode 1: Logistics', type: 'Video', category: 'Risk & Reward', series: 'Episode 1', img: '/api/images/resources/risk-reward/risk-reward-episode-1-logistics.jpg', href: 'https://www.youtube.com/watch?v=ZJ3MujCbq6I' },
+    { title: 'GOLF TRIBUTE: Share the Heritage', type: 'Video', category: 'Storytelling', img: '/api/images/resources/storytelling/golf-tribute-share-the-heritage.jpg', href: 'https://www.youtube.com/watch?v=SeNkvTYd2CE' },
+  ];
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  document.getElementById('resources').innerHTML = resources.map(r => {
+    const video = r.type === 'Video';
+    return `<a href="${r.href}" target="_blank" rel="noopener noreferrer" class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-md">
+      <div class="relative aspect-video overflow-hidden photo-fallback">
+        <img src="${r.img}" alt="" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy"/>
+        ${video ? `<div class="absolute inset-0 bg-navy/25"></div><span class="absolute inset-0 flex items-center justify-center"><span class="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-navy shadow-lg transition group-hover:bg-orange group-hover:text-white"><svg viewBox="0 0 24 24" fill="currentColor" class="ml-0.5 h-5 w-5"><path d="M8 5.14v13.72a.5.5 0 0 0 .77.42l10.5-6.86a.5.5 0 0 0 0-.84L8.77 4.72a.5.5 0 0 0-.77.42Z"/></svg></span></span>` : ''}
+      </div>
+      <div class="flex flex-1 flex-col p-3 lg:p-5">
+        <div class="mb-3 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider ${video ? 'bg-orange text-white' : 'bg-navy/5 text-navy'}">${r.type}</span>
+          <span class="text-[11px] font-medium uppercase tracking-wider text-gray-400">${esc(r.category)}</span>
+        </div>
+        ${r.series ? `<span class="mb-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-orange-500">${r.series}</span>` : ''}
+        <h3 class="line-clamp-3 text-sm font-semibold leading-snug text-navy group-hover:text-orange lg:line-clamp-none lg:text-base">${esc(r.title)}</h3>
+        ${r.meta ? `<div class="mt-auto pt-3 text-[11px] text-gray-400 lg:pt-4 lg:text-xs">${r.meta}</div>` : ''}
+      </div>
+    </a>`;
+  }).join('');
+
+  // Images that can't load: swap logos for a text mark, hide everything else.
+  function onImgError(img) {
+    const f = img.dataset.fallback;
+    if (f) {
+      const span = document.createElement('span');
+      span.className = 'logo-text ' + (f === 'logo-light' ? 'text-white text-2xl' : 'text-navy text-xl');
+      span.innerHTML = 'THE <span style="color:#F26B21">ATLAS</span> NETWORK';
+      img.replaceWith(span);
+    } else {
+      img.classList.add('img-missing');
+    }
+  }
+  document.querySelectorAll('img').forEach(img => {
+    if (img.complete && img.naturalWidth === 0) onImgError(img);
+    else img.addEventListener('error', () => onImgError(img), { once: true });
+  });
+
+  // Mobile menu toggle
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    menu.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>
+</body>
+</html>
