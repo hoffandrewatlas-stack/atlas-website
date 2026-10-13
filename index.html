@@ -60,9 +60,9 @@
   /* ---- Top bar ---- */
   .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
   .topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 64px; }
-  /* The logo image sits to the right of the text mark; it removes itself if the file can't load. */
+  /* The Atlas figure (assets/images/logo-mark.png) sits to the right of the wordmark. */
   .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
-  .logo-mark { height: 34px; width: auto; }
+  .logo-mark { height: 44px; width: auto; }
   .logo-word span { color: var(--orange); }
   .menu { display: flex; gap: 1.75rem; font-size: .8125rem; color: var(--ink); white-space: nowrap; }
   .menu a, .topbar-cta { transition: color .2s; }
@@ -99,22 +99,24 @@
   .section-head p { font-size: .9375rem; max-width: 34rem; }
   @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; } }
   .section-foot { margin-top: 2rem; }
+  .section-head--inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.5rem 3rem; }
+  .section-head--inline .btn { margin-bottom: .4rem; }
+  .section-head--inline > div { flex: 0 1 36rem; }
 
-  /* Services: five columns side by side */
-  .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 1.5rem; }
-  .service { display: flex; flex-direction: column; gap: .9rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+  /* Services: five boxes side by side. Each box shows its photo faintly behind the text:
+     add it on the box as style="--img: url('assets/images/services/name.jpg')". */
+  .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+  .service { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: .9rem; min-height: 320px; padding: 1.5rem 1.25rem; background: var(--surface); }
+  .service::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--img, none) center / cover no-repeat; opacity: .25; transition: opacity .4s var(--ease), transform .6s var(--ease); }
+  .service:hover::before { opacity: .35; transform: scale(1.03); }
   .service h3 { font-size: 1.375rem; line-height: 1.2; min-height: 2.4em; }
-  .service p { font-size: .875rem; flex: 1; }
-  .service .link-arrow { margin-top: .5rem; }
+  .service p { font-size: .875rem; flex: 1; color: var(--text); }
   @media (max-width: 1023px) {
     .services { grid-template-columns: 1fr; }
-    .service { display: grid; grid-template-columns: 2fr 3fr auto; align-items: baseline; gap: 1.5rem; padding: 1.5rem 0; }
+    .service { display: grid; grid-template-columns: 2fr 3fr auto; align-items: baseline; gap: 1.5rem; min-height: 0; }
     .service h3 { min-height: 0; }
-    .service .link-arrow { margin: 0; }
   }
-  @media (max-width: 640px) {
-    .service { grid-template-columns: 1fr; gap: .6rem; }
-  }
+  @media (max-width: 640px) { .service { grid-template-columns: 1fr; gap: .6rem; } }
 
   /* Process: six steps side by side */
   .steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
@@ -188,7 +190,7 @@
 <header class="topbar">
   <div class="container">
     <nav aria-label="Global">
-      <a class="logo" href="#top" aria-label="The Atlas Network - home"><span class="logo-word">THE <span>ATLAS</span> NETWORK</span><img class="logo-mark" src="https://theatlasnetwork.sitecare.org/assets/images/logo.svg" alt="" onerror="this.remove()"/></a>
+      <a class="logo" href="#top" aria-label="The Atlas Network - home"><span class="logo-word">THE <span>ATLAS</span> NETWORK</span><img class="logo-mark" src="assets/images/logo-mark.png" width="329" height="612" alt=""/></a>
       <div id="menu" class="menu">
         <a href="#services">Our Services</a>
         <a href="#process">Our Process</a>
@@ -220,8 +222,10 @@
   <!-- Our services -->
   <section id="services" class="section">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head section-head--inline">
         <div><span class="eyebrow">Our services</span><h2>Everything it takes to make your product.</h2></div>
+        <a class="btn" href="/services">Explore our services
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
       </div>
       <div class="services">
         <a class="service hover-title" href="/services/product-design-development">
@@ -250,8 +254,6 @@
           <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
         </a>
       </div>
-      <div class="section-foot"><a class="btn" href="/services">Explore our services
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
