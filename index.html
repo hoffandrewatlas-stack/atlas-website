@@ -20,7 +20,7 @@
     --rule: #dedede;         /* thin divider lines */
     --surface: #f5f5f5;      /* light grey panels, footer */
     --placeholder: #e8e8e8;  /* empty image slots */
-    --banner: #3b3b3b;       /* banner colour until a photo is added */
+    --banner: #3b3b3b;       /* shows behind the banner video while it loads */
     --white: #ffffff;
     --orange: #f26b21;       /* brand accent, buttons, hover */
     --orange-dark: #d9581a;  /* button hover, small orange text */
@@ -80,8 +80,8 @@
 
   /* ---- Banner ---- */
   .banner { position: relative; max-width: 1440px; margin: 0 auto; height: clamp(460px, 72vh, 680px); background: var(--banner); overflow: hidden; }
-  .banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 65%, rgba(0,0,0,0) 100%); }
+  .banner > img, .banner > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.1) 100%); }
   .banner .container { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
   .banner h1 { color: var(--white); font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
   .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
@@ -211,8 +211,12 @@
 </header>
 
 <main id="top">
-  <!-- Banner. Add the photo as: <img src="..." alt=""/> directly inside this section. -->
+  <!-- Banner: a silent 7-second loop (0:02-0:09 of the "Know the details of your product" quick tip). -->
   <section class="banner">
+    <video poster="assets/video/banner-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="assets/video/banner.webm" type="video/webm"/>
+      <source src="assets/video/banner.mp4" type="video/mp4"/>
+    </video>
     <div class="container">
       <h1>Mass Production Made Simple</h1>
       <p>From concept to customer.</p>
@@ -402,6 +406,13 @@
 <script>
   const btn = document.getElementById('menu-btn');
   const menu = document.getElementById('menu');
+
+  // Respect reduced-motion settings: show the banner's first frame instead of the loop.
+  const bannerVideo = document.querySelector('.banner video');
+  if (bannerVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    bannerVideo.removeAttribute('autoplay');
+    bannerVideo.pause();
+  }
 
   // Mobile menu toggle
   btn.addEventListener('click', () => {
