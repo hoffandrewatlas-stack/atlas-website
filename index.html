@@ -104,9 +104,9 @@
   .section-head--inline h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
   .section-head--inline > div { flex: 0 1 auto; }
 
-  /* Services: five cards side by side. Photo fills the top 60%, white text panel the bottom 40%. */
+  /* Services: five cards side by side, each a short photo strip above a white text panel. */
   .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-  .service { display: grid; grid-template-rows: 3fr 2fr; height: 580px; overflow: hidden; background: var(--white); border: 1px solid var(--rule); }
+  .service { display: grid; grid-template-rows: 174px 1fr; overflow: hidden; background: var(--white); border: 1px solid var(--rule); }
   .service-img { min-height: 0; overflow: hidden; background: var(--placeholder); }
   .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
   .service:hover .service-img img { transform: scale(1.04); }
@@ -116,8 +116,8 @@
   @media (max-width: 1023px) { .services { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 640px) {
     .services { grid-template-columns: 1fr; }
-    .service { height: auto; grid-template-rows: auto auto; }
-    .service-img { aspect-ratio: 16 / 10; max-width: 100%; }
+    .service { grid-template-rows: auto 1fr; }
+    .service-img { aspect-ratio: 32 / 10; max-width: 100%; }
   }
 
   /* Process: six steps side by side */
