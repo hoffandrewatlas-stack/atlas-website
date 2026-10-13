@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <meta name="theme-color" content="#ffffff"/>
-<title>The Atlas Network - End-to-End Supply Chain. From Concept to Customer.</title>
+<title>The Atlas Network</title>
 <meta name="description" content="The Atlas Network is a full-service supply chain company that manages your product end-to-end - concept and design, manufacturing, quality control, global logistics, customs and delivery. One partner, zero fragmentation."/>
 <meta name="robots" content="noindex, follow"/>
-<!-- Static rendering of the homepage. Assets are loaded from the live site when
-     reachable; the fallbacks below keep the layout intact when not. -->
-<base href="https://theatlasnetwork.sitecare.org/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
+  /* Layout: slim top bar, full-width banner, then stacked sections that read left to right. */
   /* ---- Design tokens: change the look of the whole page here ---- */
   :root {
     --ink: #1f1f1f;          /* headings, primary text */
@@ -21,13 +19,16 @@
     --muted: #767676;        /* labels, meta */
     --rule: #dedede;         /* thin divider lines */
     --surface: #f5f5f5;      /* light grey panels, footer */
+    --placeholder: #e8e8e8;  /* empty image slots */
+    --banner: #3b3b3b;       /* banner colour until a photo is added */
     --white: #ffffff;
-    --orange: #f26b21;       /* brand accent, buttons */
-    --orange-dark: #d9581a;  /* button hover */
+    --orange: #f26b21;       /* brand accent, buttons, hover */
+    --orange-dark: #d9581a;  /* button hover, small orange text */
     --serif: "Charis SIL", Charter, Georgia, serif;
     --sans: Inter, "Helvetica Neue", Arial, sans-serif;
-    --max: 1120px;
+    --max: 1200px;
     --gutter: 24px;
+    --ease: cubic-bezier(.2, .7, .2, 1);
   }
   @media (max-width: 640px) { :root { --gutter: 16px; } }
 
@@ -36,7 +37,8 @@
   body { margin: 0; background: var(--white); color: var(--text); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
-  h1, h2, h3 { margin: 0; color: var(--ink); font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+  h1, h2, h3 { margin: 0; color: var(--ink); font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; text-wrap: balance; }
   p { margin: 0; }
   ul, ol { margin: 0; padding: 0; list-style: none; }
   .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
@@ -45,23 +47,25 @@
   /* Buttons and links */
   .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: var(--white); font-size: .875rem; font-weight: 500; padding: .7rem 1.1rem; transition: background .2s; }
   .btn:hover { background: var(--orange-dark); }
-  .btn svg, .link-arrow svg { width: 1.1rem; height: 1.1rem; flex: none; }
+  .arrow { width: 1.1rem; height: 1.1rem; flex: none; transition: transform .3s var(--ease); }
   .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 500; }
   .link-arrow:hover { color: var(--orange-dark); }
-  .eyebrow { display: block; font-size: .75rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
-  .eyebrow span { color: var(--muted); font-weight: 400; }
+  .link-arrow:hover .arrow, .hover-title:hover .arrow { transform: translateX(4px); }
+  .eyebrow { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); margin-bottom: 1rem; }
 
-  /* Missing-image fallbacks */
-  .img-missing { visibility: hidden; }
-  .photo { background: linear-gradient(135deg, #e9e9e9, #d4d4d4); overflow: hidden; }
-  .logo-text { font-family: var(--sans); font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
+  /* Hover effect shared by services and process: the title turns orange */
+  .hover-title h3 { transition: color .3s var(--ease); }
+  .hover-title:hover h3, .hover-title:focus-visible h3 { color: var(--orange); }
 
   /* ---- Top bar ---- */
-  .topbar { position: sticky; top: 0; z-index: 50; background: var(--white); }
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
   .topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 64px; }
-  .topbar .logo img { height: 34px; width: auto; }
+  /* To use the logo file, replace the text mark with <img src="/assets/images/logo.svg" alt="The Atlas Network" height="34"/> */
+  .logo { font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
+  .logo span { color: var(--orange); }
   .menu { display: flex; gap: 1.75rem; font-size: .8125rem; color: var(--ink); }
-  .menu a:hover, .topbar-cta:hover { color: var(--orange-dark); }
+  .menu a, .topbar-cta { transition: color .2s; }
+  .menu a:hover, .topbar-cta:hover { color: var(--orange); }
   .topbar-cta { font-size: .8125rem; color: var(--ink); display: inline-flex; align-items: center; gap: .4rem; }
   .menu-btn { display: none; background: none; border: 0; padding: .5rem; margin-right: -.5rem; color: var(--ink); cursor: pointer; }
   @media (max-width: 900px) {
@@ -73,17 +77,17 @@
   }
 
   /* ---- Banner ---- */
-  .banner { position: relative; max-width: 1440px; margin: 0 auto; height: clamp(480px, 78vh, 700px); background: linear-gradient(120deg, #3a3a3a, #6b6b6b); overflow: hidden; }
+  .banner { position: relative; max-width: 1440px; margin: 0 auto; height: clamp(460px, 72vh, 680px); background: var(--banner); overflow: hidden; }
   .banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.25) 65%, rgba(0,0,0,.1) 100%); }
+  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 65%, rgba(0,0,0,0) 100%); }
   .banner .container { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-  .banner h1 { color: var(--white); font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 12ch; }
+  .banner h1 { color: var(--white); font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
   .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
 
   /* ---- Intro row (PwC-style split) ---- */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 2.5rem 0 3rem; border-top: 1px solid var(--rule); }
   .split h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); line-height: 1.15; }
-  .split p { font-size: .9375rem; margin-bottom: 1.5rem; }
+  .split p { font-size: .9375rem; margin-bottom: 1.5rem; max-width: 36rem; }
   @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 1.25rem; } }
   .intro { margin-top: 1.25rem; }
 
@@ -101,60 +105,94 @@
   }
 
   /* ---- Sections ---- */
-  .section { padding: 5rem 0 1rem; }
+  .section { padding: 5.5rem 0 0; }
   @media (max-width: 760px) { .section { padding-top: 3.5rem; } }
   .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; padding-top: 2.5rem; border-top: 1px solid var(--ink); margin-bottom: 2.5rem; }
   .section-head h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; }
   .section-head p { font-size: .9375rem; max-width: 34rem; }
   @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; } }
+  .section-foot { margin-top: 2rem; }
 
-  /* Rows used by services and work */
-  .rows > li { border-top: 1px solid var(--rule); }
-  .row { display: grid; grid-template-columns: 5fr 6fr; gap: 2.5rem; padding: 2rem 0; align-items: center; }
-  .row .photo { aspect-ratio: 16 / 10; }
-  .row .photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-  .row:hover .photo img { transform: scale(1.03); }
-  .row h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15; margin-bottom: .75rem; }
-  .row:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-  .row p { font-size: .9375rem; max-width: 32rem; margin-bottom: 1.25rem; }
-  .row .eyebrow { margin-bottom: .75rem; }
-  @media (max-width: 760px) { .row { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem 0; } }
-  .section-foot { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+  /* Services: five columns side by side */
+  .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 1.5rem; }
+  .service { display: flex; flex-direction: column; gap: .9rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+  .service h3 { font-size: 1.375rem; line-height: 1.2; min-height: 2.4em; }
+  .service p { font-size: .875rem; flex: 1; }
+  .service .link-arrow { margin-top: .5rem; }
+  @media (max-width: 1023px) {
+    .services { grid-template-columns: 1fr; }
+    .service { display: grid; grid-template-columns: 2fr 3fr auto; align-items: baseline; gap: 1.5rem; padding: 1.5rem 0; }
+    .service h3 { min-height: 0; }
+    .service .link-arrow { margin: 0; }
+  }
+  @media (max-width: 640px) {
+    .service { grid-template-columns: 1fr; gap: .6rem; }
+  }
 
-  /* Process steps */
-  .steps > li { display: grid; grid-template-columns: 4rem 5fr 6fr; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--rule); align-items: baseline; }
-  .steps .num { font-size: .8125rem; font-weight: 600; color: var(--orange-dark); }
-  .steps h3 { font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.2; }
-  .steps p { font-size: .9375rem; }
-  @media (max-width: 760px) { .steps > li { grid-template-columns: 2.5rem 1fr; gap: .25rem 1rem; } .steps p { grid-column: 2; } }
+  /* Process: six steps side by side */
+  .steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
+  .step { position: relative; padding-top: 1.75rem; border-top: 1px solid var(--rule); cursor: default; }
+  .step::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--rule); transition: background .3s var(--ease), transform .3s var(--ease); }
+  .step:hover::before { background: var(--orange); transform: scale(1.3); }
+  .step .num { display: block; font-size: .75rem; font-weight: 600; color: var(--orange-dark); margin-bottom: .75rem; font-variant-numeric: tabular-nums; }
+  .step h3 { font-size: 1.25rem; line-height: 1.2; margin-bottom: .6rem; }
+  .step p { font-size: .875rem; }
+  @media (max-width: 1023px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .steps { grid-template-columns: 1fr; gap: 1.75rem; } }
+
+  /* Work: image collage. Each tile drops down a caption on hover. */
+  .collage { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 220px; gap: 12px;
+    grid-template-areas: "a a b c" "a a d c" "e f f g"; }
+  .tile { position: relative; overflow: hidden; background: var(--placeholder); }
+  .tile:nth-child(1) { grid-area: a; } .tile:nth-child(2) { grid-area: b; } .tile:nth-child(3) { grid-area: c; }
+  .tile:nth-child(4) { grid-area: d; } .tile:nth-child(5) { grid-area: e; } .tile:nth-child(6) { grid-area: f; }
+  .tile:nth-child(7) { grid-area: g; }
+  .tile > img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .tile:hover > img { transform: scale(1.04); }
+  .tile .drop { position: absolute; top: 0; left: 0; right: 0; background: var(--white); padding: 1rem 1.1rem 1.1rem; transform: translateY(-101%); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+  .tile:hover .drop, .tile:focus-within .drop { transform: translateY(0); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+  .drop .cat { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+  .drop h3 { font-size: 1.125rem; line-height: 1.25; margin-bottom: .35rem; }
+  .drop p { font-size: .8125rem; margin-bottom: .6rem; }
+  .drop .link-arrow { color: var(--orange-dark); font-size: .8125rem; }
+  @media (hover: none) { .tile .drop { transform: none; top: auto; bottom: 0; box-shadow: none; } }
+  @media (max-width: 900px) {
+    .collage { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; grid-template-areas: "a a" "a a" "b c" "d c" "e g" "f f"; }
+  }
 
   /* FAQ */
   .faq details { border-top: 1px solid var(--rule); }
   .faq details:last-child { border-bottom: 1px solid var(--rule); }
-  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-family: var(--serif); font-size: clamp(1.125rem, 1.8vw, 1.375rem); color: var(--ink); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-family: var(--serif); font-size: clamp(1.125rem, 1.8vw, 1.375rem); color: var(--ink); transition: color .3s var(--ease); }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary:hover { color: var(--orange-dark); }
-  .faq summary svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform .2s; }
+  .faq summary:hover { color: var(--orange); }
+  .faq summary svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform .3s var(--ease); }
   .faq details[open] summary svg { transform: rotate(45deg); }
   .faq details p { padding: 0 0 1.75rem; max-width: 46rem; font-size: .9375rem; }
+  .faq details a { color: var(--orange-dark); text-decoration: underline; }
 
-  .cta { margin-top: 5rem; }
+  .cta { margin-top: 5.5rem; }
 
   /* ---- Footer ---- */
-  footer { background: var(--surface); margin-top: 4rem; padding: 3.5rem 0 2rem; font-size: .875rem; }
+  footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; font-size: .875rem; }
   .footer-cols { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 2.5rem; padding-bottom: 2.5rem; }
   .footer-cols h3 { font-family: var(--sans); font-size: .75rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
   .footer-cols li + li { margin-top: .6rem; }
+  .footer-cols a { transition: color .2s; }
   .footer-cols a:hover { color: var(--orange-dark); }
-  .footer-cols .logo img { height: 40px; width: auto; }
   .footer-cols .tagline { margin: 1rem 0 1.25rem; }
   .social { display: flex; gap: .75rem; }
   .social a { width: 36px; height: 36px; border: 1px solid var(--rule); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 600; color: var(--ink); }
-  .social a:hover { border-color: var(--orange); color: var(--orange-dark); }
+  .social a:hover { border-color: var(--orange); }
   .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: .75rem; color: var(--muted); }
   .legal div { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
   .legal a:hover { color: var(--ink); }
   @media (max-width: 900px) { .footer-cols { grid-template-columns: 1fr 1fr; } .footer-cols > :first-child { grid-column: 1 / -1; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -162,7 +200,7 @@
 <header class="topbar">
   <div class="container">
     <nav aria-label="Global">
-      <a class="logo" href="/"><img src="/assets/images/logo.svg" alt="The Atlas Network" data-fallback="logo"/></a>
+      <a class="logo" href="#top" aria-label="The Atlas Network - home">THE <span>ATLAS</span> NETWORK</a>
       <div id="menu" class="menu">
         <a href="#services">Services</a>
         <a href="#process">Our Process</a>
@@ -179,15 +217,14 @@
   </div>
 </header>
 
-<main>
-  <!-- Banner -->
+<main id="top">
+  <!-- Banner. Add the photo as: <img src="..." alt=""/> directly inside this section. -->
   <section class="banner">
-    <img src="/assets/images/banner-img.webp" alt=""/>
     <div class="container">
-      <h1>Your product. Delivered.</h1>
+      <h1>Mass Production Made Simple</h1>
       <p>From concept to customer.</p>
       <div><a class="btn" href="/start-your-project#project-form">Start your project
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -198,7 +235,7 @@
       <div>
         <p>The Atlas Network manages your product end-to-end - concept and design, manufacturing, quality control, global logistics, customs and delivery.</p>
         <a class="btn" href="#services">Explore our services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
       </div>
     </div>
     <ul class="stats">
@@ -214,28 +251,36 @@
   <section id="services" class="section">
     <div class="container">
       <div class="section-head">
-        <div><span class="eyebrow">Our services</span><h2>Expertise across every category.</h2></div>
-        <p>Deep category knowledge, global execution and measurable results, whatever you make.</p>
+        <div><span class="eyebrow">Our services</span><h2>Everything it takes to make your product.</h2></div>
+        <p>Use one service or all five. Either way you get a single team that is accountable for the result.</p>
       </div>
-      <ul class="rows">
-        <li><a class="row" href="/services/cpg-packaging">
-          <div class="photo"><img src="/assets/images/sol-cpg.png" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">01</span><h3>CPG &amp; Packaging</h3><p>Smart packaging and sourcing solutions that move from shelves to shoppers.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-        <li><a class="row" href="/services/luxury-goods">
-          <div class="photo"><img src="/assets/images/sol-watch.png" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">02</span><h3>Luxury Goods</h3><p>White-glove supply chain management for premium and luxury brands.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-        <li><a class="row" href="/services/apparel-textiles">
-          <div class="photo"><img src="/assets/images/sol-fabric.png" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">03</span><h3>Apparel &amp; Textiles</h3><p>End-to-end production and logistics for fashion and textile brands.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-        <li><a class="row" href="/services/innovation">
-          <div class="photo"><img src="/assets/images/sol-tech.png" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">04</span><h3>Innovation</h3><p>AI-powered solutions and emerging tech that drive your edge.</p><span class="link-arrow">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-      </ul>
-      <div class="section-foot"><a class="link-arrow" href="/services">View all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
+      <div class="services">
+        <a class="service hover-title" href="/services/product-design-development">
+          <h3>Product Design &amp; Development</h3>
+          <p>We turn your idea into a production-ready design, with specs, samples and prototypes signed off before tooling starts.</p>
+          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        </a>
+        <a class="service hover-title" href="/services/sourcing-production">
+          <h3>Sourcing &amp; Production</h3>
+          <p>Vetted factories, negotiated pricing and production runs we manage on the ground, from first batch to full scale.</p>
+          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        </a>
+        <a class="service hover-title" href="/services/quality-control">
+          <h3>Quality Control</h3>
+          <p>Inspections before, during and after production, so what ships matches the sample you approved.</p>
+          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        </a>
+        <a class="service hover-title" href="/services/logistics">
+          <h3>Logistics</h3>
+          <p>Freight, customs clearance and final delivery, tracked from the factory floor to your warehouse.</p>
+          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        </a>
+        <a class="service hover-title" href="/services/consulting">
+          <h3>Consulting</h3>
+          <p>Supply chain strategy and expert guidance to lower your costs, risk and lead times.</p>
+          <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -243,42 +288,38 @@
   <section id="process" class="section">
     <div class="container">
       <div class="section-head">
-        <div><span class="eyebrow">Our process</span><h2>The Atlas A-to-Z journey.</h2></div>
+        <div><span class="eyebrow">Our process</span><h2>The Atlas A&#8209;to&#8209;Z journey.</h2></div>
         <p>Six stages, one accountable partner. We own every step from the first sketch to the customer's door.</p>
       </div>
       <ol class="steps">
-        <li><span class="num">01</span><h3>Concept and design</h3><p>Smart solutions start with deep understanding.</p></li>
-        <li><span class="num">02</span><h3>Manufacturing</h3><p>Precision production with trusted partners.</p></li>
-        <li><span class="num">03</span><h3>Quality control</h3><p>Rigorous standards. Zero compromise.</p></li>
-        <li><span class="num">04</span><h3>Global logistics</h3><p>Reliable, efficient delivery across the world.</p></li>
-        <li><span class="num">05</span><h3>Customs and delivery</h3><p>Seamless clearance. On-time, every time.</p></li>
-        <li><span class="num">06</span><h3>Ongoing partnership</h3><p>Long-term collaboration that grows with you.</p></li>
+        <li class="step hover-title"><span class="num">01</span><h3>Concept and design</h3><p>Smart solutions start with deep understanding.</p></li>
+        <li class="step hover-title"><span class="num">02</span><h3>Manufacturing</h3><p>Precision production with trusted partners.</p></li>
+        <li class="step hover-title"><span class="num">03</span><h3>Quality control</h3><p>Rigorous standards. Zero compromise.</p></li>
+        <li class="step hover-title"><span class="num">04</span><h3>Global logistics</h3><p>Reliable, efficient delivery across the world.</p></li>
+        <li class="step hover-title"><span class="num">05</span><h3>Customs and delivery</h3><p>Seamless clearance. On-time, every time.</p></li>
+        <li class="step hover-title"><span class="num">06</span><h3>Ongoing partnership</h3><p>Long-term collaboration that grows with you.</p></li>
       </ol>
     </div>
   </section>
 
-  <!-- Our work -->
+  <!-- Our work. Add each product photo as <img src="..." alt="..."/> as the first child of its tile,
+       then fill in the category, name, description and link in the drop-down box. -->
   <section id="work" class="section">
     <div class="container">
       <div class="section-head">
-        <div><span class="eyebrow">Our work</span><h2>Real results. Real impact.</h2></div>
-        <p>A selection of products we have taken from concept to customer.</p>
+        <div><span class="eyebrow">Our work</span><h2>Products we have made.</h2></div>
+        <p>A selection of products we have taken from concept to customer. Hover over a product to learn more.</p>
       </div>
-      <ul class="rows">
-        <li><a class="row" href="/case-studies/premium-packaging-global-spirits-brand">
-          <div class="photo"><img src="/assets/images/spirits-packagings.webp" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">Case study <span>| Spirits &amp; Packaging</span></span><h3>Premium packaging for global spirits brands</h3><p>Custom decorated glass, matched closures and logo shippers across a portfolio of rum, gin, bourbon and tequila brands.</p><span class="link-arrow">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-        <li><a class="row" href="/case-studies/end-to-end-production-golf-accessories">
-          <div class="photo"><img src="/assets/images/Production-for-Golf-Accessories.webp" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">Case study <span>| Golf Accessories</span></span><h3>End-to-end production for a luxury golf line</h3><p>A complete heritage golf collection - hickory-shafted clubs, canvas and leather goods, apparel and gift sets - produced across multiple material streams.</p><span class="link-arrow">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-        <li><a class="row" href="/case-studies/innovative-barware-product-launch">
-          <div class="photo"><img src="/assets/images/Barware-Product-Launch.webp" alt="" loading="lazy"/></div>
-          <div><span class="eyebrow">Case study <span>| Barware Innovation</span></span><h3>Barware production for a bar-trade brand</h3><p>Copper drinkware and professional bartender carry, made to survive nightly service rather than a display shelf.</p><span class="link-arrow">Read case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span></div>
-        </a></li>
-      </ul>
-      <div class="section-foot"><a class="link-arrow" href="/case-studies">View all case studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
+      <div class="collage">
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><div class="drop"><span class="cat">Category</span><h3>Product name</h3><p>One-line description of the product.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+      </div>
+      <div class="section-foot"><a class="link-arrow" href="/case-studies">View all case studies <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -287,7 +328,7 @@
     <div class="container">
       <div class="section-head">
         <div><span class="eyebrow">FAQ</span><h2>Frequently asked questions.</h2></div>
-        <p>Can't find what you need? <a class="link-arrow" href="/faqs" style="display:inline">See all FAQs</a> or get in touch below.</p>
+        <p>Can't find what you need? Get in touch using the details at the bottom of the page.</p>
       </div>
       <div class="faq">
         <details>
@@ -308,7 +349,7 @@
         </details>
         <details>
           <summary>How do I start a project?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></summary>
-          <p>Fill in the <a href="/start-your-project#project-form" style="color:var(--orange-dark);text-decoration:underline">project form</a>, email contact@theatlasnetwork.com or call +1 (212) 268-4947, and we will take it from there.</p>
+          <p>Fill in the <a href="/start-your-project#project-form">project form</a>, email contact@theatlasnetwork.com or call +1 (212) 268-4947, and we will take it from there.</p>
         </details>
       </div>
     </div>
@@ -321,7 +362,7 @@
       <div>
         <p>Let's build something great together.</p>
         <a class="btn" href="/start-your-project#project-form">Start your project
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
@@ -331,7 +372,7 @@
   <div class="container">
     <div class="footer-cols">
       <div>
-        <a class="logo" aria-label="The Atlas Network - home" href="/"><img src="/assets/images/logo.svg" alt="The Atlas Network" data-fallback="logo"/></a>
+        <a class="logo" href="#top">THE <span>ATLAS</span> NETWORK</a>
         <p class="tagline">One partner. Full ownership.<br/> From concept to customer.</p>
         <div class="social">
           <a href="https://www.linkedin.com/in/theatlasnetwork/" aria-label="LinkedIn">in</a>
@@ -351,17 +392,18 @@
         <ul>
           <li><a href="/services/product-design-development">Product Design &amp; Development</a></li>
           <li><a href="/services/sourcing-production">Sourcing &amp; Production</a></li>
-          <li><a href="/services/quality-logistics">Quality &amp; Logistics</a></li>
+          <li><a href="/services/quality-control">Quality Control</a></li>
+          <li><a href="/services/logistics">Logistics</a></li>
           <li><a href="/services/consulting">Consulting</a></li>
         </ul>
       </div>
       <div>
         <h3>Company</h3>
-        <ul><li><a href="/about-us">About Us</a></li><li><a href="/#process">Our Process</a></li><li><a href="/careers">Careers</a></li><li><a href="/contact">Contact Us</a></li></ul>
+        <ul><li><a href="/about-us">About Us</a></li><li><a href="#process">Our Process</a></li><li><a href="/careers">Careers</a></li><li><a href="#contact">Contact Us</a></li></ul>
       </div>
       <div>
         <h3>Resources</h3>
-        <ul><li><a href="/resources">Resource Hub</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="/faqs">FAQs</a></li></ul>
+        <ul><li><a href="/resources">Resource Hub</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="#faq">FAQs</a></li></ul>
       </div>
     </div>
     <div class="legal">
@@ -372,7 +414,16 @@
 </footer>
 
 <script>
-  // In-page links: the <base> tag points elsewhere, so keep #anchors on this page.
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  // Mobile menu toggle
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  // In-page links scroll smoothly and close the mobile menu.
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -382,30 +433,6 @@
       menu.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
     });
-  });
-
-  // Images that can't load: swap logos for a text mark, leave a grey panel for photos.
-  function onImgError(img) {
-    if (img.dataset.fallback) {
-      const span = document.createElement('span');
-      span.className = 'logo-text';
-      span.innerHTML = 'THE <span style="color:var(--orange)">ATLAS</span> NETWORK';
-      img.replaceWith(span);
-    } else {
-      img.classList.add('img-missing');
-    }
-  }
-  document.querySelectorAll('img').forEach(img => {
-    if (img.complete && img.naturalWidth === 0) onImgError(img);
-    else img.addEventListener('error', () => onImgError(img), { once: true });
-  });
-
-  // Mobile menu toggle
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('menu');
-  btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
   });
 </script>
 </body>
