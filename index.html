@@ -51,7 +51,7 @@
   .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 500; }
   .link-arrow:hover { color: var(--orange-dark); }
   .link-arrow:hover .arrow, .hover-title:hover .arrow { transform: translateX(4px); }
-  .eyebrow { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); margin-bottom: 1rem; }
+  .eyebrow { display: block; font-size: .9375rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); margin-bottom: 1rem; }
 
   /* Hover effect shared by services and process: the title turns orange */
   .hover-title h3 { transition: color .3s var(--ease); }
@@ -60,9 +60,10 @@
   /* ---- Top bar ---- */
   .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
   .topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 64px; }
-  /* The Atlas figure (assets/images/logo-mark.png) sits to the right of the wordmark. */
+  /* The Atlas figure (assets/images/logo-mark.png) sits to the left of the wordmark. */
   .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
-  .logo-mark { height: 44px; width: auto; }
+  .topbar .logo { font-size: 1.375rem; line-height: 1; }
+  .logo-mark { height: 40px; width: auto; }
   .logo-word span { color: var(--orange); }
   .menu { display: flex; gap: 1.75rem; font-size: .8125rem; color: var(--ink); white-space: nowrap; }
   .menu a, .topbar-cta { transition: color .2s; }
@@ -99,9 +100,10 @@
   .section-head p { font-size: .9375rem; max-width: 34rem; }
   @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; } }
   .section-foot { margin-top: 2rem; }
-  .section-head--inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.5rem 3rem; }
+  .section-head--inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.25rem 2rem; }
+  .section-head--inline h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
   .section-head--inline .btn { margin-bottom: .4rem; }
-  .section-head--inline > div { flex: 0 1 36rem; }
+  .section-head--inline > div { flex: 0 1 auto; }
 
   /* Services: five boxes side by side. Each box shows its photo faintly behind the text:
      add it on the box as style="--img: url('assets/images/services/name.jpg')". */
@@ -190,7 +192,7 @@
 <header class="topbar">
   <div class="container">
     <nav aria-label="Global">
-      <a class="logo" href="#top" aria-label="The Atlas Network - home"><span class="logo-word">THE <span>ATLAS</span> NETWORK</span><img class="logo-mark" src="assets/images/logo-mark.png" width="329" height="612" alt=""/></a>
+      <a class="logo" href="#top" aria-label="The Atlas Network - home"><img class="logo-mark" src="assets/images/logo-mark.png" width="329" height="612" alt=""/><span class="logo-word">THE <span>ATLAS</span> NETWORK</span></a>
       <div id="menu" class="menu">
         <a href="#services">Our Services</a>
         <a href="#process">Our Process</a>
