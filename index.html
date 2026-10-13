@@ -10,197 +10,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-  /* Layout: slim top bar, full-width banner, then stacked sections that read left to right. */
-  /* ---- Design tokens: change the look of the whole page here ---- */
-  :root {
-    --ink: #1f1f1f;          /* headings, primary text */
-    --text: #4a4a4a;         /* body copy */
-    --muted: #767676;        /* labels, meta */
-    --rule: #dedede;         /* thin divider lines */
-    --surface: #f5f5f5;      /* light grey panels, footer */
-    --placeholder: #e8e8e8;  /* empty image slots */
-    --banner: #3b3b3b;       /* shows behind the banner video while it loads */
-    --white: #ffffff;
-    --orange: #f26b21;       /* brand accent, buttons, hover */
-    --orange-dark: #d9581a;  /* button hover, small orange text */
-    --heading: Manrope, "Helvetica Neue", Arial, sans-serif;  /* headlines and titles */
-    --sans: Manrope, "Helvetica Neue", Arial, sans-serif;     /* body text and UI */
-    --max: 1200px;
-    --gutter: 24px;
-    --ease: cubic-bezier(.2, .7, .2, 1);
-  }
-  @media (max-width: 640px) { :root { --gutter: 16px; } }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-  body { margin: 0; background: var(--white); color: var(--text); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
-  img { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-  h1, h2, h3 { margin: 0; color: var(--ink); font-family: var(--heading); font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
-  p { margin: 0; }
-  ul, ol { margin: 0; padding: 0; list-style: none; }
-  .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  /* Buttons and links */
-  .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: var(--white); font-size: .875rem; font-weight: 600; padding: .7rem 1.1rem; transition: background .2s; }
-  .btn:hover { background: var(--orange-dark); }
-  .arrow { width: 1.1rem; height: 1.1rem; flex: none; transition: transform .3s var(--ease); }
-  .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 600; }
-  .link-arrow:hover { color: var(--orange-dark); }
-  .link-arrow:hover .arrow, .hover-title:hover .arrow { transform: translateX(4px); }
-  .eyebrow { display: block; font-size: .9375rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); margin-bottom: 1rem; }
-
-  /* Hover effect shared by services and process: the title turns orange */
-  .hover-title h3 { transition: color .3s var(--ease); }
-  .hover-title:hover h3, .hover-title:focus-visible h3 { color: var(--orange); }
-
-  /* ---- Top bar ---- */
-  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
-  .topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 64px; }
-  /* The Atlas figure (assets/images/logo-mark.svg) sits to the left of the wordmark. */
-  .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
-  .topbar .logo { font-size: 1.375rem; line-height: 1; }
-  .logo-mark { height: 40px; width: auto; }
-  .logo-word span { color: var(--orange); }
-  .menu { display: flex; gap: 1.75rem; font-size: .875rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
-  .menu a, .topbar-cta { transition: color .2s; }
-  .menu a:hover, .topbar-cta:hover { color: var(--orange); }
-  .topbar-cta { font-size: .875rem; font-weight: 600; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
-  .menu-btn { display: none; background: none; border: 0; padding: .5rem; margin-right: -.5rem; color: var(--ink); cursor: pointer; }
-  @media (max-width: 1100px) {
-    .menu-btn { display: block; }
-    .topbar-cta { display: none; }
-    .menu { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--white); border-top: 1px solid var(--rule); padding: .5rem var(--gutter) 1rem; box-shadow: 0 12px 24px rgba(0,0,0,.06); }
-    .menu.open { display: flex; }
-    .menu a { padding: .75rem 0; border-bottom: 1px solid var(--rule); font-size: 1rem; }
-  }
-
-  /* ---- Banner ---- */
-  .banner { position: relative; max-width: 1440px; margin: 0 auto; height: clamp(460px, 72vh, 680px); background: var(--banner); overflow: hidden; }
-  .banner > img, .banner > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.85); }  /* 15% darker so the title stands out */
-  .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.1) 100%); }
-  .banner .container { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-  .banner h1 { color: var(--white); font-weight: 800; letter-spacing: -.03em; font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
-  .banner h1 span { color: var(--orange); }
-  .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
-
-  /* ---- Split row (closing call to action) ---- */
-  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; padding: 2.5rem 0 3rem; border-top: 1px solid var(--rule); }
-  .split h2 { font-size: clamp(1.75rem, 3vw, 2.375rem); line-height: 1.15; }
-  .split p { font-size: .9375rem; margin-bottom: 1.5rem; max-width: 36rem; }
-  @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 1.25rem; } }
-
-  /* ---- Sections ---- */
-  .section { padding: 5.5rem 0 0; }
-  @media (max-width: 760px) { .section { padding-top: 3.5rem; } }
-  .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; padding-top: 2.5rem; border-top: 1px solid var(--ink); margin-bottom: 2.5rem; }
-  .section-head h2 { font-weight: 700; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; }
-  .section-head p { font-size: .9375rem; max-width: 34rem; }
-  @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; } }
-  .section-foot { margin-top: 2rem; }
-  .section-head--inline { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.25rem 2rem; }
-  .section-head--inline h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
-  .section-head--inline > div { flex: 0 1 auto; }
-
-  /* Services: five cards side by side, each a short photo strip above a white text panel. */
-  .services { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-  .service { display: grid; grid-template-rows: 174px 1fr; overflow: hidden; background: var(--white); border: 1px solid var(--rule); }
-  .service-img { min-height: 0; overflow: hidden; background: var(--placeholder); }
-  .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
-  .service:hover .service-img img { transform: scale(1.04); }
-  .service-body { display: flex; flex-direction: column; gap: .6rem; padding: 1.1rem 1.1rem 1.2rem; background: var(--white); }
-  .service h3 { font-size: 1.25rem; line-height: 1.2; }
-  .service p { font-size: .8125rem; line-height: 1.55; flex: 1; color: var(--text); }
-  @media (max-width: 1023px) { .services { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 640px) {
-    .services { grid-template-columns: 1fr; }
-    .service { grid-template-rows: auto 1fr; }
-    .service-img { aspect-ratio: 32 / 10; max-width: 100%; }
-  }
-
-  /* Process: six steps side by side */
-  .steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
-  .step { position: relative; padding-top: 1.75rem; border-top: 1px solid var(--rule); cursor: default; }
-  .step::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--rule); transition: background .3s var(--ease), transform .3s var(--ease); }
-  .step:hover::before { background: var(--orange); transform: scale(1.3); }
-  .step .num { display: block; font-size: .75rem; font-weight: 600; color: var(--orange-dark); margin-bottom: .75rem; font-variant-numeric: tabular-nums; }
-  .step h3 { font-size: 1.25rem; line-height: 1.2; margin-bottom: .6rem; }
-  .step p { font-size: .875rem; }
-  @media (max-width: 1023px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  @media (max-width: 640px) { .steps { grid-template-columns: 1fr; gap: 1.75rem; } }
-
-  /* Work: image collage. Each tile drops down a caption on hover. */
-  .collage { display: grid; grid-template-columns: 1fr 1fr .93fr; gap: 12px; grid-template-areas: "a b c" "d e c"; }
-  .tile { position: relative; overflow: hidden; background: var(--placeholder); aspect-ratio: 800 / 535; max-width: 100%; }
-  .tile:nth-child(1) { grid-area: a; } .tile:nth-child(2) { grid-area: b; } .tile:nth-child(3) { grid-area: c; aspect-ratio: auto; }
-  .tile:nth-child(4) { grid-area: d; } .tile:nth-child(5) { grid-area: e; }
-  .tile > img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
-  .tile:hover > img { transform: scale(1.04); }
-  .tile .drop { position: absolute; top: 0; left: 0; right: 0; background: var(--white); padding: 1rem 1.1rem 1.1rem; transform: translateY(-101%); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
-  .tile:hover .drop, .tile:focus-within .drop { transform: translateY(0); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
-  .drop .cat { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
-  .drop h3 { font-size: 1.125rem; line-height: 1.25; margin-bottom: .35rem; }
-  .drop p { font-size: .8125rem; margin-bottom: .6rem; }
-  .drop .link-arrow { color: var(--orange-dark); font-size: .8125rem; }
-  @media (hover: none) { .tile .drop { transform: none; top: auto; bottom: 0; box-shadow: none; } }
-  @media (max-width: 900px) { .collage { grid-template-columns: 1fr 1fr; grid-template-areas: "a c" "b c" "d e"; } }
-  @media (max-width: 560px) {
-    .collage { grid-template-columns: 1fr; grid-template-areas: none; }
-    .tile, .tile:nth-child(n) { grid-area: auto; }
-    .tile:nth-child(3) { aspect-ratio: 1394 / 2000; }
-  }
-
-  /* FAQ */
-  .faq details { border-top: 1px solid var(--rule); }
-  .faq details:last-child { border-bottom: 1px solid var(--rule); }
-  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-family: var(--heading); font-weight: 600; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--ink); transition: color .3s var(--ease); }
-  .faq summary::-webkit-details-marker { display: none; }
-  .faq summary:hover { color: var(--orange); }
-  .faq summary svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform .3s var(--ease); }
-  .faq details[open] summary svg { transform: rotate(45deg); }
-  .faq details p { padding: 0 0 1.75rem; max-width: 46rem; font-size: .9375rem; }
-  .faq details a { color: var(--orange-dark); text-decoration: underline; }
-
-  .cta { margin-top: 5.5rem; }
-
-  /* ---- Footer ---- */
-  footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; font-size: .875rem; }
-  .footer-cols { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 2.5rem; padding-bottom: 2.5rem; }
-  .footer-cols h3 { font-family: var(--sans); font-size: .75rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
-  .footer-cols li + li { margin-top: .6rem; }
-  .footer-cols a { transition: color .2s; }
-  .footer-cols a:hover { color: var(--orange-dark); }
-  .footer-cols .tagline { margin: 1rem 0 1.25rem; }
-  .social { display: flex; gap: .75rem; }
-  .social a { width: 36px; height: 36px; border: 1px solid var(--rule); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 600; color: var(--ink); }
-  .social a:hover { border-color: var(--orange); }
-  .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); font-size: .75rem; color: var(--muted); }
-  .legal div { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
-  .legal a:hover { color: var(--ink); }
-  @media (max-width: 900px) { .footer-cols { grid-template-columns: 1fr 1fr; } .footer-cols > :first-child { grid-column: 1 / -1; } }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { transition: none !important; }
-  }
-</style>
+<link href="assets/css/site.css" rel="stylesheet"/>
 </head>
 <body>
 
 <header class="topbar">
   <div class="container">
     <nav aria-label="Global">
-      <a class="logo" href="#top" aria-label="The Atlas Network - home"><img class="logo-mark" src="assets/images/logo-mark.svg" width="329" height="612" alt=""/><span class="logo-word">THE <span>ATLAS</span> NETWORK</span></a>
+      <a class="logo" href="index.html" aria-label="The Atlas Network - home"><img class="logo-mark" src="assets/images/logo-mark.svg" width="329" height="612" alt=""/><span class="logo-word">THE <span>ATLAS</span> NETWORK</span></a>
       <div id="menu" class="menu">
-        <a href="#services">Our Services</a>
-        <a href="#process">Our Process</a>
-        <a href="#work">Our Work</a>
-        <a href="/referral-network">Referral Network</a>
-        <a href="#faq">FAQ</a>
-        <a href="/about-us">About Us</a>
+        <a href="services.html">Our Services</a>
+        <a href="process.html">Our Process</a>
+        <a href="work.html">Our Work</a>
+        <a href="referral-network.html">Referral Network</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">About Us</a>
       </div>
       <a class="topbar-cta" href="/start-your-project#project-form">Start your project <span aria-hidden="true">→</span></a>
       <button id="menu-btn" class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
@@ -233,7 +57,7 @@
         <div><span class="eyebrow">Our services</span><h2>Everything it takes to make your product.</h2></div>
       </div>
       <div class="services">
-        <a class="service hover-title" href="/services/product-design-development">
+        <a class="service hover-title" href="services.html#product-design">
           <div class="service-img"><img src="assets/images/services/product-design.webp" alt="" loading="lazy"/></div>
           <div class="service-body">
             <h3>Product Design &amp; Development</h3>
@@ -241,7 +65,7 @@
             <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
           </div>
         </a>
-        <a class="service hover-title" href="/services/sourcing-production">
+        <a class="service hover-title" href="services.html#sourcing-production">
           <div class="service-img"><img src="assets/images/services/sourcing-production.webp" alt="" loading="lazy"/></div>
           <div class="service-body">
             <h3>Sourcing &amp; Production</h3>
@@ -249,7 +73,7 @@
             <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
           </div>
         </a>
-        <a class="service hover-title" href="/services/quality-control">
+        <a class="service hover-title" href="services.html#quality-control">
           <div class="service-img"><img src="assets/images/services/quality-control.webp" alt="" loading="lazy"/></div>
           <div class="service-body">
             <h3>Quality Control</h3>
@@ -257,7 +81,7 @@
             <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
           </div>
         </a>
-        <a class="service hover-title" href="/services/logistics">
+        <a class="service hover-title" href="services.html#logistics">
           <div class="service-img"><img src="assets/images/services/logistics.webp" alt="" loading="lazy"/></div>
           <div class="service-body">
             <h3>Logistics</h3>
@@ -265,7 +89,7 @@
             <span class="link-arrow">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></span>
           </div>
         </a>
-        <a class="service hover-title" href="/services/consulting">
+        <a class="service hover-title" href="services.html#consulting">
           <div class="service-img"><img src="assets/images/services/consulting.webp" alt="" loading="lazy"/></div>
           <div class="service-body">
             <h3>Consulting</h3>
@@ -292,6 +116,7 @@
         <li class="step hover-title"><span class="num">05</span><h3>Customs and delivery</h3><p>Seamless clearance. On-time, every time.</p></li>
         <li class="step hover-title"><span class="num">06</span><h3>Ongoing partnership</h3><p>Long-term collaboration that grows with you.</p></li>
       </ol>
+      <div class="section-foot"><a class="link-arrow" href="process.html">See our full process <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -304,13 +129,13 @@
         <p>A selection of products we have taken from concept to customer. Hover over a product to learn more.</p>
       </div>
       <div class="collage">
-        <div class="tile"><img src="assets/images/work/bumbu-rum.png" width="800" height="535" alt="Bumbu rum bottles - The Original, Crème and XO - on a beach" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Bumbu Rum Co.</h3><p>Bottles for The Original, Crème and XO.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
-        <div class="tile"><img src="assets/images/work/hall-of-champions.webp" width="800" height="535" alt="Golf driver-shaped Hall of Champions decanter on a bar" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Hall of Champions decanter</h3><p>A golf driver-shaped glass decanter on a branded base.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
-        <div class="tile"><img src="assets/images/work/tequila-arta.webp" width="1394" height="2000" alt="Two Tequila Arta Extra Añejo bottles with tasting glasses" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Tequila Arta Extra Añejo</h3><p>Triangular decorated glass bottles with sculpted stoppers.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
-        <div class="tile"><img src="assets/images/work/compass-stoppers.webp" width="800" height="535" alt="Wooden bottle stoppers with working wildlife compasses" loading="lazy"/><div class="drop"><span class="cat">Accessories</span><h3>Compass bottle stoppers</h3><p>Wooden stoppers set with working wildlife compasses.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
-        <div class="tile"><img src="assets/images/work/filling-line.webp" width="800" height="535" alt="Automated bottle filling machine on a factory floor" loading="lazy"/><div class="drop"><span class="cat">Production</span><h3>Bottle filling line</h3><p>Automated filling and capping equipment for production runs.</p><a class="link-arrow" href="/case-studies">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><img src="assets/images/work/bumbu-rum.png" width="800" height="535" alt="Bumbu rum bottles - The Original, Crème and XO - on a beach" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Bumbu Rum Co.</h3><p>Bottles for The Original, Crème and XO.</p><a class="link-arrow" href="work.html">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><img src="assets/images/work/hall-of-champions.webp" width="800" height="535" alt="Golf driver-shaped Hall of Champions decanter on a bar" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Hall of Champions decanter</h3><p>A golf driver-shaped glass decanter on a branded base.</p><a class="link-arrow" href="work.html">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><img src="assets/images/work/tequila-arta.webp" width="1394" height="2000" alt="Two Tequila Arta Extra Añejo bottles with tasting glasses" loading="lazy"/><div class="drop"><span class="cat">Spirits &amp; Packaging</span><h3>Tequila Arta Extra Añejo</h3><p>Triangular decorated glass bottles with sculpted stoppers.</p><a class="link-arrow" href="work.html">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><img src="assets/images/work/compass-stoppers.webp" width="800" height="535" alt="Wooden bottle stoppers with working wildlife compasses" loading="lazy"/><div class="drop"><span class="cat">Accessories</span><h3>Compass bottle stoppers</h3><p>Wooden stoppers set with working wildlife compasses.</p><a class="link-arrow" href="work.html">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
+        <div class="tile"><img src="assets/images/work/filling-line.webp" width="800" height="535" alt="Automated bottle filling machine on a factory floor" loading="lazy"/><div class="drop"><span class="cat">Production</span><h3>Bottle filling line</h3><p>Automated filling and capping equipment for production runs.</p><a class="link-arrow" href="work.html">Learn more <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div></div>
       </div>
-      <div class="section-foot"><a class="link-arrow" href="/case-studies">View all of our work <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
+      <div class="section-foot"><a class="link-arrow" href="work.html">View all of our work <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -363,7 +188,7 @@
   <div class="container">
     <div class="footer-cols">
       <div>
-        <a class="logo" href="#top"><span class="logo-word">THE <span>ATLAS</span> NETWORK</span></a>
+        <a class="logo" href="index.html"><span class="logo-word">THE <span>ATLAS</span> NETWORK</span></a>
         <p class="tagline">One partner. Full ownership.<br/> From concept to customer.</p>
         <div class="social">
           <a href="https://www.linkedin.com/in/theatlasnetwork/" aria-label="LinkedIn">in</a>
@@ -381,20 +206,20 @@
       <div>
         <h3>Services</h3>
         <ul>
-          <li><a href="/services/product-design-development">Product Design &amp; Development</a></li>
-          <li><a href="/services/sourcing-production">Sourcing &amp; Production</a></li>
-          <li><a href="/services/quality-control">Quality Control</a></li>
-          <li><a href="/services/logistics">Logistics</a></li>
-          <li><a href="/services/consulting">Consulting</a></li>
+          <li><a href="services.html#product-design">Product Design &amp; Development</a></li>
+          <li><a href="services.html#sourcing-production">Sourcing &amp; Production</a></li>
+          <li><a href="services.html#quality-control">Quality Control</a></li>
+          <li><a href="services.html#logistics">Logistics</a></li>
+          <li><a href="services.html#consulting">Consulting</a></li>
         </ul>
       </div>
       <div>
         <h3>Company</h3>
-        <ul><li><a href="/about-us">About Us</a></li><li><a href="#process">Our Process</a></li><li><a href="/careers">Careers</a></li><li><a href="#contact">Contact Us</a></li></ul>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="process.html">Our Process</a></li><li><a href="referral-network.html">Referral Network</a></li><li><a href="/careers">Careers</a></li></ul>
       </div>
       <div>
         <h3>Resources</h3>
-        <ul><li><a href="/resources">Resource Hub</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="#faq">FAQs</a></li></ul>
+        <ul><li><a href="work.html">Our Work</a></li><li><a href="faq.html">FAQs</a></li><li><a href="/resources">Resource Hub</a></li></ul>
       </div>
     </div>
     <div class="legal">
@@ -404,34 +229,6 @@
   </div>
 </footer>
 
-<script>
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('menu');
-
-  // Respect reduced-motion settings: show the banner's first frame instead of the loop.
-  const bannerVideo = document.querySelector('.banner video');
-  if (bannerVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    bannerVideo.removeAttribute('autoplay');
-    bannerVideo.pause();
-  }
-
-  // Mobile menu toggle
-  btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
-  });
-
-  // In-page links scroll smoothly and close the mobile menu.
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-      menu.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
