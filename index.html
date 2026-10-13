@@ -9,7 +9,7 @@
 <meta name="robots" content="noindex, follow"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   /* Layout: slim top bar, full-width banner, then stacked sections that read left to right. */
   /* ---- Design tokens: change the look of the whole page here ---- */
@@ -24,8 +24,8 @@
     --white: #ffffff;
     --orange: #f26b21;       /* brand accent, buttons, hover */
     --orange-dark: #d9581a;  /* button hover, small orange text */
-    --serif: "Charis SIL", Charter, Georgia, serif;
-    --sans: Inter, "Helvetica Neue", Arial, sans-serif;
+    --heading: Manrope, "Helvetica Neue", Arial, sans-serif;  /* headlines and titles */
+    --sans: Manrope, "Helvetica Neue", Arial, sans-serif;     /* body text and UI */
     --max: 1200px;
     --gutter: 24px;
     --ease: cubic-bezier(.2, .7, .2, 1);
@@ -38,17 +38,17 @@
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
-  h1, h2, h3 { margin: 0; color: var(--ink); font-family: var(--serif); font-weight: 400; letter-spacing: -.01em; text-wrap: balance; }
+  h1, h2, h3 { margin: 0; color: var(--ink); font-family: var(--heading); font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
   p { margin: 0; }
   ul, ol { margin: 0; padding: 0; list-style: none; }
   .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   /* Buttons and links */
-  .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: var(--white); font-size: .875rem; font-weight: 500; padding: .7rem 1.1rem; transition: background .2s; }
+  .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: var(--white); font-size: .875rem; font-weight: 600; padding: .7rem 1.1rem; transition: background .2s; }
   .btn:hover { background: var(--orange-dark); }
   .arrow { width: 1.1rem; height: 1.1rem; flex: none; transition: transform .3s var(--ease); }
-  .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 500; }
+  .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 600; }
   .link-arrow:hover { color: var(--orange-dark); }
   .link-arrow:hover .arrow, .hover-title:hover .arrow { transform: translateX(4px); }
   .eyebrow { display: block; font-size: .9375rem; font-weight: 600; letter-spacing: .02em; color: var(--ink); margin-bottom: 1rem; }
@@ -61,14 +61,14 @@
   .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
   .topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 64px; }
   /* The Atlas figure (assets/images/logo-mark.png) sits to the left of the wordmark. */
-  .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
+  .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 800; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
   .topbar .logo { font-size: 1.375rem; line-height: 1; }
   .logo-mark { height: 40px; width: auto; }
   .logo-word span { color: var(--orange); }
-  .menu { display: flex; gap: 1.75rem; font-size: .8125rem; color: var(--ink); white-space: nowrap; }
+  .menu { display: flex; gap: 1.75rem; font-size: .875rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
   .menu a, .topbar-cta { transition: color .2s; }
   .menu a:hover, .topbar-cta:hover { color: var(--orange); }
-  .topbar-cta { font-size: .8125rem; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
+  .topbar-cta { font-size: .875rem; font-weight: 600; color: var(--ink); white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; }
   .menu-btn { display: none; background: none; border: 0; padding: .5rem; margin-right: -.5rem; color: var(--ink); cursor: pointer; }
   @media (max-width: 1100px) {
     .menu-btn { display: block; }
@@ -83,7 +83,7 @@
   .banner > img, .banner > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.1) 100%); }
   .banner .container { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-  .banner h1 { color: var(--white); font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
+  .banner h1 { color: var(--white); font-weight: 800; letter-spacing: -.03em; font-size: clamp(2.75rem, 7vw, 5.75rem); line-height: 1.02; max-width: 11ch; }
   .banner p { color: rgba(255,255,255,.9); font-size: 1.125rem; margin: 1.25rem 0 2rem; }
 
   /* ---- Split row (closing call to action) ---- */
@@ -96,7 +96,7 @@
   .section { padding: 5.5rem 0 0; }
   @media (max-width: 760px) { .section { padding-top: 3.5rem; } }
   .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; padding-top: 2.5rem; border-top: 1px solid var(--ink); margin-bottom: 2.5rem; }
-  .section-head h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; }
+  .section-head h2 { font-weight: 700; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; }
   .section-head p { font-size: .9375rem; max-width: 34rem; }
   @media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; } }
   .section-foot { margin-top: 2rem; }
@@ -155,7 +155,7 @@
   /* FAQ */
   .faq details { border-top: 1px solid var(--rule); }
   .faq details:last-child { border-bottom: 1px solid var(--rule); }
-  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-family: var(--serif); font-size: clamp(1.125rem, 1.8vw, 1.375rem); color: var(--ink); transition: color .3s var(--ease); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.5rem 0; font-family: var(--heading); font-weight: 600; font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--ink); transition: color .3s var(--ease); }
   .faq summary::-webkit-details-marker { display: none; }
   .faq summary:hover { color: var(--orange); }
   .faq summary svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform .3s var(--ease); }
