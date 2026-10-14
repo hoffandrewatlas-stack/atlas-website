@@ -331,6 +331,7 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .map-pulse { opacity: .3; transform-box: fill-box; transform-origin: center; animation: map-pulse 2.4s ease-out infinite; }
 .map-pin text { font: 700 16px var(--sans); fill: var(--ink); }
 .map-pin .map-sub { font-size: 13px; font-weight: 500; fill: var(--muted); }
+.map-pin--sm text { font-size: 14px; font-weight: 600; }
 @keyframes map-pulse { from { transform: scale(.6); opacity: .5; } to { transform: scale(2); opacity: 0; } }
-@media (max-width: 640px) { .map-pin text { font-size: 30px; } .map-pin .map-sub { display: none; } }
+@media (max-width: 640px) { .map-pin text { font-size: 30px; } .map-pin--sm text { font-size: 26px; } .map-pin .map-sub { display: none; } }
 @media (prefers-reduced-motion: reduce) { .map-pulse { animation: none; } }
