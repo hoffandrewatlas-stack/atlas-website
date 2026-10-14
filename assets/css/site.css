@@ -188,7 +188,7 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .crumbs { display: flex; gap: .5rem; font-size: .8125rem; color: var(--muted); margin-bottom: 1.5rem; }
 .crumbs a:hover { color: var(--orange-dark); }
 .page-head h1 { font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.04; letter-spacing: -.03em; max-width: 18ch; }
-.page-head h1 span { color: var(--orange); }
+.page-head h1 span, .section-head h2 span { color: var(--orange); }
 .page-head .lead { margin-top: 1.5rem; font-size: 1.125rem; line-height: 1.6; max-width: 44rem; }
 .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
 .jump a { border: 1px solid var(--rule); padding: .45rem .9rem; font-size: .8125rem; font-weight: 600; color: var(--ink); transition: border-color .2s, color .2s; }
