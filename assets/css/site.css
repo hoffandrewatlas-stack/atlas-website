@@ -56,21 +56,25 @@ a.service:hover, .steps a:hover, a.logo:hover, .social a:hover { text-decoration
 
 /* ---- Top bar ---- */
 .topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: var(--white); }
-.topbar nav { display: flex; align-items: center; justify-content: space-between; gap: 2rem; height: 80px; }
+/* The top bar uses a wider frame than the page so every link fits on desktop; sizes scale down on narrower screens. */
+.topbar .container { max-width: 1440px; padding: 0 clamp(16px, 2.2vw, 40px); }
+.topbar nav { display: flex; align-items: center; gap: clamp(.9rem, 1.4vw, 1.25rem); height: 80px; }
+.topbar .menu { margin-inline: auto; padding-inline: clamp(1rem, 2vw, 2rem); }  /* centred between the logo and the button */
 /* The Atlas figure (assets/images/logo-mark.svg) sits to the left of the wordmark. */
 .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
 .topbar .logo { font-size: 1.4375rem; line-height: 1; letter-spacing: .02em; }
-.logo-mark { height: 46px; width: auto; }
+.logo-mark { height: clamp(38px, 3.2vw, 46px); width: auto; }
 @media (max-width: 480px) { .topbar .logo-type { height: 17px; } .topbar .logo-mark { height: 40px; } }
-.logo-type { height: 22px; width: auto; }  /* traced wordmark from the company logo */
+.logo-type { height: 22px; width: auto; }
+.topbar .logo-type { height: clamp(17px, 1.55vw, 22px); }  /* traced wordmark from the company logo */
 .footer-cols .logo-type { height: 20px; }
-.menu { display: flex; gap: 1.75rem; font-size: 1rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.menu { display: flex; gap: clamp(1rem, 1.8vw, 1.75rem); font-size: clamp(.875rem, 1.1vw, 1rem); font-weight: 500; color: var(--ink); white-space: nowrap; }
 .menu a, .topbar-cta { transition: color .2s; }
 .menu a:hover { color: var(--orange); }
-.topbar-cta { font-size: .9375rem; font-weight: 600; color: var(--white); background: var(--orange); padding: .7rem 1.35rem; border-radius: 999px; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; transition: background .2s; }
+.topbar-cta { font-size: clamp(.8125rem, 1vw, .9375rem); font-weight: 600; color: var(--white); background: var(--orange); padding: .65rem clamp(.9rem, 1.4vw, 1.35rem); border-radius: 999px; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; transition: background .2s; }
 .topbar-cta:hover { background: var(--orange-dark); }
 .menu-btn { display: none; background: none; border: 0; padding: .5rem; margin-right: -.5rem; color: var(--ink); cursor: pointer; }
-@media (max-width: 1300px) {
+@media (max-width: 1023px) {
   .menu-btn { display: block; }
   .topbar-cta { display: none; }
   .menu { display: none; position: absolute; top: 80px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--white); border-top: 1px solid var(--rule); padding: .5rem var(--gutter) 1rem; box-shadow: 0 12px 24px rgba(0,0,0,.06); }
@@ -200,10 +204,10 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .menu a[aria-current="page"] { color: var(--orange); }
 .topbar-cta[aria-current="page"] { background: var(--orange-dark); }
 /* Disclaimer link at the far right of the top bar; inside the menu on smaller screens */
-.topbar-aux { font-size: .875rem; font-weight: 500; color: var(--muted); white-space: nowrap; margin-left: -.75rem; }
+.topbar-aux { font-size: clamp(.8125rem, 1vw, .875rem); font-weight: 500; color: var(--muted); white-space: nowrap; }
 .topbar-aux:hover, .topbar-aux[aria-current="page"] { color: var(--orange); }
 .menu-extra { display: none; }
-@media (max-width: 1300px) { .topbar-aux { display: none; } .menu .menu-extra { display: block; } }
+@media (max-width: 1023px) { .topbar-aux { display: none; } .menu .menu-extra { display: block; } }
 
 /* Detail blocks: one per service or process step */
 .detail { padding-top: 4.5rem; scroll-margin-top: 80px; }
