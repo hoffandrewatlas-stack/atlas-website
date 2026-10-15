@@ -202,9 +202,15 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .page-head h1 { font-weight: 700; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.04; letter-spacing: -.03em; max-width: 18ch; }
 .page-head h1 span, .section-head h2 span { color: var(--orange); }
 .page-head .lead { margin-top: 1.5rem; font-size: 1.125rem; line-height: 1.6; max-width: 44rem; }
-.head-split { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem clamp(2rem, 6vw, 6rem); align-items: center; }
-.head-logo { width: clamp(120px, 14vw, 190px); height: auto; }
-@media (max-width: 700px) { .head-split { grid-template-columns: 1fr; } .head-logo { width: 110px; order: -1; } }
+/* About header: logo top-aligned with the breadcrumb, left edge in line with the last nav link (set by site.js) */
+.page-head--logo { border-bottom: 0; }
+.page-head--logo .container { display: flex; flex-direction: column; }
+.head-logo { width: 110px; height: auto; order: 1; margin-bottom: 1.5rem; }
+.page-head--logo .crumbs { order: 0; } .page-head--logo h1 { order: 2; } .page-head--logo .lead { order: 3; }
+@media (min-width: 1024px) {
+  .page-head--logo .container { display: block; position: relative; min-height: calc(clamp(120px, 14vw, 190px) * 1.882); }
+  .head-logo { position: absolute; top: 0; left: var(--logo-x, calc(50% + 260px)); width: clamp(120px, 14vw, 190px); margin: 0; }
+}
 .head-cta { margin-top: 2rem; }
 .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
 .jump a { border: 1px solid var(--rule); border-radius: 6px; padding: .45rem .9rem; font-size: .8125rem; font-weight: 600; color: var(--ink); transition: border-color .2s, color .2s; }

@@ -32,6 +32,21 @@ const menu = document.getElementById('menu');
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
 
+// About header logo: line its left edge up with the last link in the top menu.
+const headLogo = document.querySelector('.head-logo');
+if (headLogo) {
+  const placeLogo = () => {
+    const links = document.querySelectorAll('.topbar a[href="disclaimer.html"]');
+    const link = [...links].find(a => a.offsetParent !== null);
+    if (!link) return;
+    const box = headLogo.parentElement.getBoundingClientRect();
+    headLogo.style.setProperty('--logo-x', `${link.getBoundingClientRect().left - box.left}px`);
+  };
+  placeLogo();
+  addEventListener('resize', placeLogo);
+  if (document.fonts) document.fonts.ready.then(placeLogo);
+}
+
 // Video play buttons: start the video, then fade the button out a second later.
 // It comes back whenever the video is paused or finishes.
 document.querySelectorAll('.video-play').forEach(button => {
