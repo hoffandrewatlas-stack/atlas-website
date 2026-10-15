@@ -74,12 +74,15 @@ a.service:hover, .steps a:hover, a.logo:hover, .social a:hover { text-decoration
 .menu a:hover { color: var(--orange); }
 .topbar-cta { font-size: clamp(.8125rem, 1vw, .9375rem); font-weight: 600; color: var(--white); background: var(--orange); padding: .65rem clamp(.9rem, 1.4vw, 1.35rem); border-radius: 999px; white-space: nowrap; display: inline-flex; align-items: center; gap: .4rem; transition: background .2s; }
 .topbar-cta:hover { background: var(--orange-dark); }
+.menu-cta { display: none; }
 .menu-btn { display: none; background: none; border: 0; padding: .5rem; margin-right: -.5rem; color: var(--ink); cursor: pointer; }
 @media (max-width: 1023px) {
-  .menu-btn { display: block; }
+  .menu-btn { display: block; margin-left: auto; }
   .topbar-cta { display: none; }
   .menu { display: none; position: absolute; top: 80px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--white); border-top: 1px solid var(--rule); padding: .5rem var(--gutter) 1rem; box-shadow: 0 12px 24px rgba(0,0,0,.06); }
   .menu.open { display: flex; }
+  .menu .menu-cta { display: inline-flex; align-items: center; gap: .45rem; align-self: flex-start; margin-top: 1rem; padding: .7rem 1.35rem; border: 0; border-radius: 999px; background: var(--orange); color: var(--white); font-weight: 600; }
+  .menu .menu-cta:hover { background: var(--orange-dark); color: var(--white); }
   .menu a { padding: .75rem 0; border-bottom: 1px solid var(--rule); font-size: 1rem; }
 }
 
