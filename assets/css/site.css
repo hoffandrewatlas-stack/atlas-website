@@ -350,3 +350,15 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 .legal-doc { max-width: 46rem; }
 .legal-doc p { font-size: .9375rem; line-height: 1.75; }
 .legal-doc p + p { margin-top: 1.25rem; }
+
+/* Referral Network: description on the left, video on the right, split by a section-style divider */
+.referral-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.referral-text { padding-right: clamp(1.5rem, 4vw, 3.5rem); min-width: 0; }
+.referral-video { padding-left: clamp(1.5rem, 4vw, 3.5rem); border-left: 1px solid var(--ink); min-width: 0; }
+.video-frame { aspect-ratio: 16 / 9; max-width: 100%; background: var(--placeholder); overflow: hidden; }
+.video-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 760px) {
+  .referral-split { grid-template-columns: 1fr; }
+  .referral-text { padding-right: 0; min-height: 4rem; }
+  .referral-video { padding-left: 0; padding-top: 2rem; margin-top: 2rem; border-left: 0; border-top: 1px solid var(--ink); }
+}
