@@ -61,9 +61,9 @@ a.service:hover, .steps a:hover, a.logo:hover, .social a:hover { text-decoration
 .logo { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; font-size: 1rem; letter-spacing: .04em; color: var(--ink); white-space: nowrap; }
 .topbar .logo { font-size: 1.4375rem; line-height: 1; letter-spacing: .02em; }
 .logo-mark { height: 46px; width: auto; }
-@media (max-width: 480px) { .topbar .logo { font-size: 1.25rem; } .topbar .logo-mark { height: 40px; } }
-.logo-word { font-style: italic; font-weight: 700; }
-.logo-word span { color: var(--grey); }
+@media (max-width: 480px) { .topbar .logo-type { height: 17px; } .topbar .logo-mark { height: 40px; } }
+.logo-type { height: 22px; width: auto; }  /* traced wordmark from the company logo */
+.footer-cols .logo-type { height: 20px; }
 .menu { display: flex; gap: 1.75rem; font-size: 1rem; font-weight: 500; color: var(--ink); white-space: nowrap; }
 .menu a, .topbar-cta { transition: color .2s; }
 .menu a:hover { color: var(--orange); }
