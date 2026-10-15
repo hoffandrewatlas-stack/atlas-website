@@ -32,6 +32,20 @@ const menu = document.getElementById('menu');
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
 
+// Video play buttons: start the video, then fade the button out a second later.
+// It comes back whenever the video is paused or finishes.
+document.querySelectorAll('.video-play').forEach(button => {
+  const video = button.parentElement.querySelector('video');
+  if (!video) return;
+  let timer;
+  const hideSoon = () => { clearTimeout(timer); timer = setTimeout(() => button.classList.add('is-hidden'), 1000); };
+  const show = () => { clearTimeout(timer); button.classList.remove('is-hidden'); };
+  button.addEventListener('click', () => { video.play(); hideSoon(); });
+  video.addEventListener('play', hideSoon);
+  video.addEventListener('pause', show);
+  video.addEventListener('ended', show);
+});
+
 // Respect reduced-motion settings: show the banner's first frame instead of the loop.
 const bannerVideo = document.querySelector('.banner video');
 if (bannerVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
