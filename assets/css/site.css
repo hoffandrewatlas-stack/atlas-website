@@ -390,6 +390,7 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 /* Join the Referral Network: vertical timeline linking to each step */
 .timeline { max-width: 44rem; }
 .timeline li { position: relative; }
+.timeline a:hover { text-decoration: none; }  /* only the step title underlines, not its description */
 .timeline a { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 1.25rem; padding-bottom: 2.25rem; }
 .timeline li:not(:last-child)::before { content: ""; position: absolute; left: 14px; top: 34px; bottom: 4px; width: 2px; background: var(--grey-light); }
 .timeline li:last-child a { padding-bottom: 0; }
