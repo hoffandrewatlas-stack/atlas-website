@@ -7,14 +7,14 @@
 <title>Contact | The Atlas Network</title>
 <meta name="description" content="The Atlas Network is a full-service supply chain company that manages your product end-to-end - concept and design, manufacturing, quality control, global logistics, customs and delivery."/>
 <meta name="robots" content="noindex, follow"/>
-<link href="assets/css/site.css?v=724927a3" rel="stylesheet"/>
+<link href="assets/css/site.css?v=6e07677c" rel="stylesheet"/>
 </head>
 <body>
 
 <header class="topbar">
   <div class="container">
     <nav aria-label="Global">
-      <a class="logo" href="index.html" aria-label="The Atlas Network - home"><img class="logo-mark" src="assets/images/logo-mark.svg?v=724927a3" width="329" height="612" alt=""/><img class="logo-type" src="assets/images/logo-wordmark.svg?v=724927a3" width="917" height="71" alt=""/></a>
+      <a class="logo" href="index.html" aria-label="The Atlas Network - home"><img class="logo-mark" src="assets/images/logo-mark.svg?v=6e07677c" width="329" height="612" alt=""/><img class="logo-type" src="assets/images/logo-wordmark.svg?v=6e07677c" width="917" height="71" alt=""/></a>
       <div id="menu" class="menu">
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
@@ -39,6 +39,34 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>Contact</span></nav>
       <h1>Get in <span>touch.</span></h1>
       <p class="lead">Questions about a product, a factory or a shipment? Talk to our team in New York, or send us your brief and we will come back with a route to production and a quote.</p>
+      <div class="head-cta"><a class="btn btn--pill" href="#contact-form">Contact us here <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="brief-band" id="contact-form">
+    <div class="container">
+      <div class="brief-head"><h2>Send us a message.</h2></div>
+      <div class="brief-card">
+        <form id="contact-form-el" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" autocomplete="name" placeholder="Your name" required/><span class="error">Please enter your name.</span></div>
+            <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required/><span class="error">Please enter a valid email address.</span></div>
+            <div class="field"><label for="c-company">Company <span class="optional">(optional)</span></label><input id="c-company" name="company" type="text" autocomplete="organization" placeholder="Company name"/></div>
+            <div class="field"><label for="c-phone">Phone <span class="optional">(optional)</span></label><input id="c-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number"/></div>
+            <div class="field field--full"><label for="c-subject">Subject</label><input id="c-subject" name="subject" type="text" placeholder="What is this about?" required/><span class="error">Please add a subject.</span></div>
+            <div class="field field--full"><label for="c-message">Message</label><textarea id="c-message" name="message" placeholder="How can we help?" required></textarea><span class="error">Please write a message.</span></div>
+            <div class="field field--full">
+              <button class="btn form-submit" type="submit">Send message <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+            </div>
+          </div>
+        </form>
+        <div class="form-done" id="contact-done" hidden>
+          <span class="eyebrow" style="color:var(--orange)">Message received</span>
+          <h3>Thanks, we have your message.</h3>
+          <p>A member of our team will get back to you shortly.</p>
+          <button class="btn" type="button" id="contact-again">Send another message <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -86,7 +114,7 @@
   <div class="container">
     <div class="footer-cols">
       <div>
-        <a class="logo" href="index.html" aria-label="The Atlas Network - home"><img class="logo-type" src="assets/images/logo-wordmark.svg?v=724927a3" width="917" height="71" alt=""/></a>
+        <a class="logo" href="index.html" aria-label="The Atlas Network - home"><img class="logo-type" src="assets/images/logo-wordmark.svg?v=6e07677c" width="917" height="71" alt=""/></a>
         <div class="social">
           <a href="https://www.linkedin.com/in/theatlasnetwork/" aria-label="LinkedIn">in</a>
           <a href="https://www.youtube.com/@theatlasnetworkllc596" aria-label="YouTube">▶</a>
@@ -123,6 +151,7 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=724927a3"></script>
+<script src="assets/js/site.js?v=6e07677c"></script>
+<script src="assets/js/contact-form.js?v=6e07677c"></script>
 </body>
 </html>
