@@ -346,7 +346,7 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 @media (prefers-reduced-motion: reduce) { .map-pulse { animation: none; } }
 
 /* Disclaimer page */
-.legal-page { padding: 4rem 0 2rem; }
+.legal-page { padding: 3rem 0 2rem; }
 .legal-doc { max-width: 46rem; }
 .legal-doc p { font-size: .9375rem; line-height: 1.75; }
 .legal-doc p + p { margin-top: 1.25rem; }
