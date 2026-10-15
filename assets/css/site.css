@@ -241,13 +241,15 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 /* Larger collage on the work page: blank tiles in mixed sizes */
 .collage-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; grid-auto-flow: dense; gap: 12px; }
 .collage-grid .tile { aspect-ratio: auto; }
+.tile--white { background: var(--white); outline: 1px solid var(--rule); outline-offset: -1px; }
+.tile--white > img { object-fit: contain; padding: 1rem; }
 .collage-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
 .collage-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 560px) { .collage-row { grid-template-columns: 1fr; } }
 .collage-grid .wide { grid-column: span 2; }
 .collage-grid .tall { grid-row: span 2; }
 @media (max-width: 900px) { .collage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 180px; } }
-@media (max-width: 560px) { .collage-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; } .collage-grid .wide, .collage-grid .tall { grid-column: auto; grid-row: auto; } }
+@media (max-width: 560px) { .collage-grid { grid-template-columns: 1fr; grid-auto-rows: auto; } .collage-grid .tile { height: 220px; } .collage-grid .tile--photo { height: auto; aspect-ratio: var(--ar); } .collage-grid .wide, .collage-grid .tall { grid-column: auto; grid-row: auto; } }
 .detail-head--split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 3rem; align-items: end; margin-bottom: 2rem; }
 .detail-head--split p { font-size: .9375rem; max-width: 34rem; }
 @media (max-width: 760px) { .detail-head--split { grid-template-columns: 1fr; } }
