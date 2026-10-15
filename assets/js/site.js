@@ -27,6 +27,11 @@
 const btn = document.getElementById('menu-btn');
 const menu = document.getElementById('menu');
 
+// Open every page at the top, including when returning with the back button.
+// A link to a section (#anchor) still lands on that section.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
+
 // Respect reduced-motion settings: show the banner's first frame instead of the loop.
 const bannerVideo = document.querySelector('.banner video');
 if (bannerVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
