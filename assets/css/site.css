@@ -173,7 +173,7 @@ a.service:hover, .steps a:hover, a.logo:hover, .social a:hover { text-decoration
 
 /* ---- Footer ---- */
 footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; font-size: .875rem; }
-.footer-cols { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 2.5rem; padding-bottom: 2.5rem; }
+.footer-cols { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 2.5rem; padding-bottom: 2.5rem; }
 .footer-cols h3 { font-family: var(--sans); font-size: .75rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
 .footer-cols li + li { margin-top: .6rem; }
 .footer-cols a { transition: color .2s; }
