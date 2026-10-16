@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerim Kfuri – Philosophy and Leadership</title>
+<meta name="description" content="Kerim Kfuri – global entrepreneur, supply chain expert, author of Supply Chain – Ups and Downs, and keynote speaker.">
+<link rel="icon" href="https://kerimkfuri.com/wp-content/uploads/2025/12/cropped-kerim-favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://kerimkfuri.com/wp-content/uploads/2025/12/cropped-kerim-favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ==========================================================
+     EDIT COLORS & FONTS HERE
+     ========================================================== */
+  :root {
+    --orange: #ff6900;
+    --orange-dark: #e05c00;
+    --ink: #1c1c1c;
+    --muted: #666;
+    --light: #f6f4f1;
+    --white: #fff;
+    --radius: 18px;
+    --heading: "Montserrat", system-ui, sans-serif;
+    --body: "Inter", system-ui, sans-serif;
+    --max: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--body); color: var(--ink); background: var(--white); line-height: 1.65; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3, h4, h6 { font-family: var(--heading); line-height: 1.15; margin: 0 0 .6em; }
+  h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
+  .eyebrow { font-family: var(--heading); color: var(--orange); text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; font-weight: 700; margin-bottom: .75rem; }
+  .accent { color: var(--orange); }
+  .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  section { padding: 90px 0; }
+  .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: #fff; text-decoration: none; font-family: var(--heading); font-weight: 700; padding: 14px 28px; border-radius: 999px; border: 0; cursor: pointer; font-size: 1rem; transition: background .2s, transform .2s; }
+  .btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
+  .btn.outline { background: transparent; border: 2px solid #fff; }
+  .btn.outline:hover { background: #fff; color: var(--ink); }
+
+  /* ---------- Top bar ---------- */
+  .topbar { background: var(--orange); color: #fff; text-align: center; font-size: .9rem; padding: 8px 16px; font-weight: 500; }
+  .topbar a { font-weight: 700; text-decoration: underline; }
+
+  /* ---------- Header ---------- */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .nav img.logo { height: 40px; width: auto; }
+  .nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; }
+  .nav ul a { text-decoration: none; font-family: var(--heading); font-weight: 600; font-size: .95rem; }
+  .nav ul a:hover, .nav ul a.active { color: var(--orange); }
+  .menu-btn { display: none; background: none; border: 0; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+  @media (max-width: 900px) {
+    .menu-btn { display: block; }
+    .nav ul { display: none; position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; gap: 0; background: #fff; box-shadow: 0 12px 24px rgba(0,0,0,.08); }
+    .nav ul.open { display: flex; }
+    .nav ul a { display: block; padding: 14px 20px; border-top: 1px solid #eee; }
+  }
+
+  /* ---------- Hero (video) ---------- */
+  .hero { position: relative; min-height: min(78vh, 760px); display: flex; align-items: center; color: #fff; overflow: hidden; padding: 0; background: #111; }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.1) 100%); }
+  .hero .container { position: relative; z-index: 1; padding-top: 80px; padding-bottom: 80px; }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 800; max-width: 760px; }
+  .hero p { font-size: 1.2rem; max-width: 560px; opacity: .9; margin: 0 0 2rem; }
+  .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ---------- About ---------- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; gap: 40px; } }
+  .about p { color: #333; }
+  .about strong a { color: var(--orange); }
+
+  /* ---------- Ventures ---------- */
+  .ventures { background: var(--light); }
+  .ventures h2 { text-align: center; margin-bottom: 50px; }
+  .venture { display: grid; grid-template-columns: 1fr 1fr; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.05); margin-bottom: 28px; }
+  .venture:nth-child(even) .venture-img { order: 2; }
+  .venture-img { min-height: 300px; background-color: #e9e4de; background-size: cover; background-position: center; }
+  .venture-text { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+  .venture-text h3 { font-size: 1.4rem; color: var(--orange); }
+  .venture-text p { margin: 0; color: #333; }
+  @media (max-width: 800px) {
+    .venture { grid-template-columns: 1fr; }
+    .venture:nth-child(even) .venture-img { order: 0; }
+    .venture-img { min-height: 220px; }
+    .venture-text { padding: 28px; }
+  }
+
+  /* ---------- Quote ---------- */
+  .quote { background: var(--ink); color: #fff; }
+  .quote blockquote { margin: 0; font-family: var(--heading); font-size: clamp(1.5rem, 3vw, 2.3rem); font-weight: 700; line-height: 1.3; position: relative; padding-top: 50px; }
+  .quote blockquote::before { content: "\201D"; position: absolute; top: -30px; left: 0; font-size: 7rem; color: var(--orange); line-height: 1; }
+  .quote img { border-radius: var(--radius); }
+
+  /* ---------- Speaking logos ---------- */
+  .speaking { text-align: center; }
+  .logos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; align-items: center; margin-top: 40px; }
+  .logos .logo-tile { height: 110px; display: flex; align-items: center; justify-content: center; background: var(--light); border-radius: 14px; padding: 18px; }
+  .logos img { max-height: 70px; width: auto; object-fit: contain; filter: grayscale(1); opacity: .8; transition: filter .2s, opacity .2s; }
+  .logos .logo-tile:hover img { filter: none; opacity: 1; }
+  .logos .logo-text { font-family: var(--heading); font-weight: 800; font-size: 1.05rem; color: #555; }
+  @media (max-width: 900px) { .logos { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 520px) { .logos { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ---------- News carousel ---------- */
+  .news { background: var(--light); }
+  .news-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 30px; }
+  .news-head h2 { margin: 0; }
+  .arrows { display: flex; gap: 10px; }
+  .arrows button { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--ink); background: transparent; font-size: 1.2rem; cursor: pointer; transition: all .2s; }
+  .arrows button:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 3); gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
+  .track::-webkit-scrollbar { display: none; }
+  @media (max-width: 900px) { .track { grid-auto-columns: calc((100% - 24px) / 2); } }
+  @media (max-width: 600px) { .track { grid-auto-columns: 86%; } }
+  .card { scroll-snap-align: start; background: #fff; border-radius: var(--radius); padding: 28px; text-decoration: none; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.05); transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(0,0,0,.1); }
+  .card .source { font-family: var(--heading); font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--orange); }
+  .card h4 { font-size: 1.1rem; margin: 0; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .card .more { margin-top: auto; font-weight: 600; font-size: .9rem; }
+
+  /* ---------- Book ---------- */
+  .book img { max-width: 380px; margin: 0 auto; box-shadow: 0 30px 60px rgba(0,0,0,.2); border-radius: 6px; }
+  .book p { color: #333; }
+
+  /* ---------- Contact ---------- */
+  .contact { position: relative; color: #fff; background: #111 url('https://kerimkfuri.com/wp-content/uploads/2024/07/form-image-scaled-1.webp') center/cover no-repeat; }
+  .contact::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.72); }
+  .contact .container { position: relative; }
+  .contact .intro { max-width: 680px; margin-bottom: 40px; }
+  form .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+  @media (max-width: 800px) { form .row { grid-template-columns: 1fr; } }
+  form label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+  form input[type=text], form input[type=email], form textarea { width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; font: inherit; }
+  form input::placeholder, form textarea::placeholder { color: rgba(255,255,255,.55); }
+  form input:focus, form textarea:focus { outline: 2px solid var(--orange); border-color: transparent; }
+  .checks { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .checks label { display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 10px 16px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; cursor: pointer; font-weight: 500; }
+  .checks input { accent-color: var(--orange); }
+  .hp { position: absolute; left: -9999px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--ink); color: #bbb; padding: 50px 0 30px; }
+  .foot { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+  .foot img { height: 40px; width: auto; filter: brightness(0) invert(1); }
+  .social { display: flex; gap: 12px; list-style: none; margin: 0; padding: 0; }
+  .social a { width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; transition: background .2s; }
+  .social a:hover { background: var(--orange); }
+  .social svg { width: 18px; height: 18px; fill: #fff; }
+  .copy { text-align: center; font-size: .85rem; margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); }
+
+  /* ---------- Fade-in on scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">Check Out My Book: <a href="https://supplychainupsanddowns.com/" target="_blank" rel="noopener">SUPPLY CHAIN UPS AND DOWNS</a></div>
+
+<!-- ============ HEADER / NAV ============ -->
+<header>
+  <div class="container nav">
+    <a href="https://kerimkfuri.com/"><img class="logo" src="https://kerimkfuri.com/wp-content/uploads/2024/05/kerim-kfuri-brand-logo.svg" alt="Kerim Kfuri"></a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <ul id="menu">
+      <li><a href="https://kerimkfuri.com/" class="active">Home</a></li>
+      <li><a href="https://kerimkfuri.com/book/">Book</a></li>
+      <li><a href="https://kerimkfuri.com/speaking/">Speaking</a></li>
+      <li><a href="https://kerimkfuri.com/consulting/">Consulting</a></li>
+      <li><a href="https://kerimkfuri.com/quotes/">Quotes</a></li>
+      <li><a href="https://kerimkfuri.com/media/">Media</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="https://dlit9vq1inflx.cloudfront.net/kerim-kfuri-banner-video.mp4" type="video/mp4">
+  </video>
+  <div class="container">
+    <div class="eyebrow">Entrepreneur · Author · Speaker</div>
+    <h1>Kerim <span class="accent">Kfuri</span></h1>
+    <p>Global supply chain expert, CEO of The Atlas Network, and author of <em>Supply Chain – Ups and Downs</em>.</p>
+    <div class="actions">
+      <a class="btn" href="#contact">Book Kerim to Speak &rarr;</a>
+      <a class="btn outline" href="https://supplychainupsanddowns.com/" target="_blank" rel="noopener">Get the Book</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about">
+  <div class="container two-col">
+    <div class="reveal">
+      <img src="images/hero-collage.webp" alt="Kerim Kfuri speaking on stage and portraits" width="592" height="649">
+    </div>
+    <div class="reveal">
+      <h2>Hello, I'm Kerim Kfuri</h2>
+      <p>As a global entrepreneur, I am ever-curious, ever-growing, and ever-learning. Throughout my career, I have spearheaded numerous ventures that have significantly impacted the supply chain industry, all committed to innovation and excellence. I’ve written the first of many books, <strong><a href="https://supplychainupsanddowns.com/" target="_blank" rel="noopener">Supply Chain — Ups and Downs</a></strong>, and am genuinely passionate about sharing my knowledge in classrooms with students studying supply chain management and at industry conferences.</p>
+      <p>My career has spanned across a diverse range of sectors, including technology, retail, entertainment, real estate, spirits, packaging, sports equipment, medical, import/export, and banking. I have held notable positions at NASD/FINRA (National Association of Securities Dealers), Accenture, SEC, Friedman Billings Ramsey, and 24/7 Media, contributing to my broad understanding of the business landscape.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENTURES ============ -->
+<section class="ventures">
+  <div class="container">
+    <h2 class="reveal">Some Of My <span class="accent">Ventures</span></h2>
+    <div class="venture-list">
+
+      <div class="venture reveal">
+        <div class="venture-img" style="background-image:url('https://kerimkfuri.com/wp-content/uploads/2024/07/img-text-1.webp')"></div>
+        <div class="venture-text">
+          <h3>The Atlas Network</h3>
+          <p>The Atlas Network, LLC, a leading global supply chain enterprise offering a comprehensive range of end-to-end services, including consulting, product development, factory selection, mass production oversight and management, quality control, documentation, logistics, shipping, and storage. Our mission is to streamline and optimize every aspect of the supply chain process, ensuring our clients achieve unparalleled efficiency and success.</p>
+        </div>
+      </div>
+
+      <div class="venture reveal">
+        <div class="venture-img" style="background-image:url('https://kerimkfuri.com/wp-content/uploads/2024/07/img-txt-6.webp')"></div>
+        <div class="venture-text">
+          <h3>The Supply and Demand Show</h3>
+          <p>I am the Founder and co-host of “The Supply and Demand Show” podcast and YouTube channel. We interview weekly leaders across the supply chain management industry.</p>
+        </div>
+      </div>
+
+      <div class="venture reveal">
+        <div class="venture-img" style="background-image:url('https://kerimkfuri.com/wp-content/uploads/2024/07/img-txt-3.webp')"></div>
+        <div class="venture-text">
+          <h3>The Global Crosswalk</h3>
+          <p>The Global Crosswalk, LLC, is a SaaS tech solutions platform that streamlines project management lifecycles for the supply chain industry.</p>
+        </div>
+      </div>
+
+      <div class="venture reveal">
+        <div class="venture-img" style="background-image:url('https://kerimkfuri.com/wp-content/uploads/2024/07/img-txt-4.webp')"></div>
+        <div class="venture-text">
+          <h3>Passive Cedars</h3>
+          <p>Passive Cedars, LLC is a solely owned investment and financing group that plays a passive role in strategic businesses looking to expand and/or create new venture opportunities.</p>
+        </div>
+      </div>
+
+      <div class="venture reveal">
+        <div class="venture-img" style="background-image:url('https://kerimkfuri.com/wp-content/uploads/2024/07/img-txt-5.webp')"></div>
+        <div class="venture-text">
+          <h3>Education</h3>
+          <p>I hold a BA in Finance, International Business, and Marketing from Washington University in St. Louis, an MBA in Business Law &amp; Finance from American University, and an Artificial Intelligence &amp; Business Strategy certification from MIT. I’m a perpetual student, always seeking equilibrium in thought, culture, business practices, and amongst people, and I hope to inspire others to embrace a similar journey of continuous learning.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote">
+  <div class="container two-col">
+    <blockquote class="reveal">One whose every goal is accomplished and dream fulfilled, lives not as an individual, but as an instrument of destiny</blockquote>
+    <img class="reveal" src="https://kerimkfuri.com/wp-content/uploads/2024/07/Kerim-Kfuri-home-quote-page-900x600.webp" alt="Kerim Kfuri" width="900" height="600" loading="lazy">
+  </div>
+</section>
+
+<!-- ============ SPEAKING ENGAGEMENTS ============ -->
+<section class="speaking">
+  <div class="container">
+    <h2 class="reveal">Speaking <span class="accent">Engagements</span></h2>
+    <!-- To swap a text tile for a logo, replace <span class="logo-text">…</span> with <img src="images/your-logo.png" alt="…"> -->
+    <div class="logos reveal">
+      <div class="logo-tile"><img src="images/logo-alibaba.webp" alt="Alibaba.com CoCreate" loading="lazy"></div>
+      <div class="logo-tile"><img src="images/logo-ascm.webp" alt="Association for Supply Chain Management" loading="lazy"></div>
+      <div class="logo-tile"><span class="logo-text">White Label World Expo</span></div>
+      <div class="logo-tile"><span class="logo-text">Reuters Events</span></div>
+      <div class="logo-tile"><span class="logo-text">Home Delivery World</span></div>
+      <div class="logo-tile"><span class="logo-text">Manifest</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN THE NEWS ============ -->
+<section class="news" id="media">
+  <div class="container">
+    <div class="news-head">
+      <div>
+        <div class="eyebrow">Media</div>
+        <h2>In the News</h2>
+      </div>
+      <div class="arrows">
+        <button type="button" data-dir="-1" aria-label="Previous">&#8592;</button>
+        <button type="button" data-dir="1" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+
+    <!-- Each card = one article. Copy/paste a card to add a new one. -->
+    <div class="track">
+      <a class="card" href="https://www.bloomberg.com/news/videos/2025-11-18/the-close-11-18-2025-video" target="_blank" rel="noopener">
+        <span class="source">Bloomberg</span>
+        <h4>Global Stocks Decline Ahead of Nvidia Earnings</h4>
+        <p>Bloomberg Television brings you the latest news and analysis leading up to the final minutes and seconds before and after...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://finance.yahoo.com/video/holiday-shoppers-expect-supply-chain-193000204.html" target="_blank" rel="noopener">
+        <span class="source">Yahoo Finance</span>
+        <h4>What holiday shoppers should expect from the supply chain this year</h4>
+        <p>As the Trump administration is optimistic on reaching a trade deal with China ahead of the president meeting with China's...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.success.com/art-of-delegation-daymond-john/" target="_blank" rel="noopener">
+        <span class="source">SUCCESS</span>
+        <h4>The Art of Delegation: What I Learned About Leadership from Kerim Kfuri, CEO of The Atlas Network</h4>
+        <p>When I was younger, I thought being a leader meant carrying everything on my shoulders...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.uschamber.com/co/good-company/ask-the-board/navigate-supply-chain-disruptions" target="_blank" rel="noopener">
+        <span class="source">CO— by U.S. Chamber</span>
+        <h4>Atlas Network CEO Offers Advice on How to Navigate Supply Chain Disruptions</h4>
+        <p>In this edition of “Ask the Board,” we feature Kerim Kfuri, President and CEO of The Atlas Network LLC...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.inc.com/" target="_blank" rel="noopener">
+        <!-- TODO: paste the exact Inc. article URL above -->
+        <span class="source">Inc.</span>
+        <h4>3 Tips for Dealing With Tariffs From a Supply Chain Expert</h4>
+        <p>That’s according to Kerim Kfuri, CEO of packaging and supply chain solutions company The Atlas Network...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.entrepreneur.com/business-news/how-small-business-owners-can-navigate-the-tariffs" target="_blank" rel="noopener">
+        <!-- TODO: double-check this URL; it was truncated in the saved page -->
+        <span class="source">Entrepreneur</span>
+        <h4>‘Uniquely Positioned’: How Small Business Owners Can Successfully Navigate the Tariffs</h4>
+        <p>As tariffs and their effects on the supply chain begin to take shape, Kerim Kfuri, the president and CEO of...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://fintech.tv/navigating-the-new-normal-supply-chain-challenges-and-opportunities/" target="_blank" rel="noopener">
+        <span class="source">FinTech.TV</span>
+        <h4>Navigating the New Normal: Supply Chain Challenges and Opportunities</h4>
+        <p>Kerim Kfuri, President and CEO at The Atlas Network, LLC, joins Remy Blaire to delve into the complexities of the...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://chiefexecutive.net/5-do-able-ways-to-navigate-rising-tariffs-in-global-supply-chains/" target="_blank" rel="noopener">
+        <span class="source">Chief Executive</span>
+        <h4>5 Do-able Ways To Navigate Rising Tariffs In Global Supply Chains</h4>
+        <p>Even with President Trump’s retreat on the most severe parts of his tariff regime, there are still many unanswered questions...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://abcnews.go.com/Business/" target="_blank" rel="noopener">
+        <!-- TODO: paste the exact ABC News video URL above -->
+        <span class="source">ABC News</span>
+        <h4>Small business owners raise concerns over tariffs</h4>
+        <p>Co-founder and owner of Brooklyn Delhi, Chitra Agrawal and President &amp; CEO of the Atlas Network, Kerim Kfuri join ABC...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.livenowfox.com/video/1618200" target="_blank" rel="noopener">
+        <span class="source">LiveNOW from FOX</span>
+        <h4>President Trump’s ‘Liberation Day’ tariffs</h4>
+        <p>The White House says President Trump’s ‘Liberation Day’ tariffs will go into effect immediately...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://chiefexecutive.net/trump-change-ceo-supply-chain-to-dos-for-2025-and-beyond/" target="_blank" rel="noopener">
+        <span class="source">Chief Executive</span>
+        <h4>Trump Change: CEO Supply Chain To-Dos For 2025 And Beyond</h4>
+        <p>The Trump administration has ushered in new round of uncertainty for global manufacturing, with shifting trade policies...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=EUkRbg_KVWE" target="_blank" rel="noopener">
+        <span class="source">NewsNation</span>
+        <h4>New Tariffs Could Shake Up Supply Chains—Are You Ready?</h4>
+        <p>A 25% tariff on Canadian and Mexican imports and a 10% tariff on Chinese goods could take effect as soon...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://partners.time.com/partners/bcc/" target="_blank" rel="noopener">
+        <!-- TODO: paste the exact TIME partners URL above -->
+        <span class="source">TIME</span>
+        <h4>Navigating the Complexities of Global Trade: Insights from Kerim Kfuri’s “Supply Chain Ups and Downs”</h4>
+        <p>In today’s globalized world, supply chains form the backbone of the economy...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=UcjiuabMTeI" target="_blank" rel="noopener">
+        <span class="source">Schwab Network</span>
+        <h4>PPI Shows Sticky Inflation; Will CPI Cement It?</h4>
+        <p>PPI showed inflation hasn't shifted much, and Kerim Kfuri says it could be an early indicator to Wednesday's CPI report...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.benzinga.com/content/41895585/" target="_blank" rel="noopener">
+        <span class="source">Benzinga</span>
+        <h4>Daymond John Selects Supply Chain Leader Kerim Kfuri for Exclusive CEO Access Program</h4>
+        <p>Renowned supply expert Kerim Kfuri is pleased to announce that he has joined Daymond John's exclusive CEO Access program...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://finance.yahoo.com/video/black-friday-prices-could-rise-182359502.html" target="_blank" rel="noopener">
+        <span class="source">Yahoo Finance</span>
+        <h4>Black Friday prices could rise 25% next year due to tariffs: Expert</h4>
+        <p>President-elect Donald Trump says he will instate 60% tariffs on imports from China and 25% tariffs on Canadian and Mexican...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.livenowfox.com/video/1554375" target="_blank" rel="noopener">
+        <span class="source">LiveNOW from FOX</span>
+        <h4>Trump tariffs: What impact could that bring?</h4>
+        <p>Kerim Kfuri, Global Supply Chain Analyst &amp; Supply Chain Expert, CEO of The Atlas Network...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.benzinga.com/content/41326686/" target="_blank" rel="noopener">
+        <span class="source">Benzinga</span>
+        <h4>Kerim Kfuri introduces Chain Builder — A proven supply chain consulting solution built on the principles from his book</h4>
+        <p>Kerim Kfuri, supply chain expert and author of Supply Chain Ups and Downs, has launched Chain Builder...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.benzinga.com/content/41223585/" target="_blank" rel="noopener">
+        <span class="source">Benzinga</span>
+        <h4>New book by Kerim Kfuri introduces Supply Chain Social Economic Theory to optimize global operations</h4>
+        <p>The new book shows that embracing and managing imbalances, rather than seeking equilibrium, is key to driving efficiency...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.einpresswire.com/article/744945790/" target="_blank" rel="noopener">
+        <span class="source">EIN Presswire</span>
+        <h4>Kerim Kfuri, Author and CEO of The Atlas Network, to chair DELIVER America 2024 in Las Vegas</h4>
+        <p>DELIVER America, the premier retail and commerce matchmaking event...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+      <a class="card" href="https://www.ktnv.com/morningblend/itep-llc-6-25-24" target="_blank" rel="noopener">
+        <span class="source">KTNV Las Vegas</span>
+        <h4>Kerim Kfuri | 6/25/24</h4>
+        <p>As the President of The Atlas Network, Kerim is a seasoned expert in navigating the intricate web of global suppliers...</p>
+        <span class="more">Watch &rarr;</span>
+      </a>
+      <a class="card" href="https://www.rollingstone.co.uk/" target="_blank" rel="noopener">
+        <!-- TODO: paste the exact Rolling Stone UK URL above -->
+        <span class="source">Rolling Stone UK</span>
+        <h4>Quitting the Cubicle: Why Returning to the Office is a Fantasy</h4>
+        <p>Kerim Kfuri, CEO of The Atlas Network, is not your typical executive...</p>
+        <span class="more">Read more &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK ============ -->
+<section class="book" id="book">
+  <div class="container two-col">
+    <img class="reveal" src="https://kerimkfuri.com/wp-content/uploads/2024/09/Supply_Chain_Ups_and_Downs_front.webp" alt="Supply Chain – Ups and Downs book cover" loading="lazy">
+    <div class="reveal">
+      <div class="eyebrow">Book</div>
+      <h2>Supply Chain – The Ups and Downs</h2>
+      <p>This book is an essential guide to cross-border trade and supply chain management. Written by Supply Chain Thought Leader Kerim Kfuri, a 20-year veteran, this book caters to students and seasoned professionals. Whether you’re just starting in the field or seeking to refresh your knowledge, this comprehensive book covers everything from A to Z, ensuring you’re equipped with the expertise needed for success.</p>
+      <p>From prototyping to sustainability, explore every aspect of the supply chain journey, gaining insights that will elevate your understanding and impact. Focused on practical applications and real-world scenarios, this definitive guide is your go-to resource for mastering all facets of this dynamic, ever-changing industry.</p>
+      <a class="btn" href="https://supplychainupsanddowns.com/" target="_blank" rel="noopener">Get the book &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="intro reveal">
+      <div class="eyebrow">Book Tours / Speaking</div>
+      <h2>Want to Learn More About Cutting Edge Supply Chain Management?</h2>
+      <p>Ready to book an engaging, personable author who inspires readers with practicality? Contact us for Kerim Kfuri’s availability to visit your company or bookstore for an eye-opening event.</p>
+    </div>
+
+    <!-- TODO: set action="" to your form handler (e.g. Formspree, Netlify Forms, or your WordPress endpoint). -->
+    <form class="reveal" action="#" method="post">
+      <div class="row">
+        <div><label for="fname">First Name</label><input id="fname" type="text" name="first_name" placeholder="First Name" required></div>
+        <div><label for="lname">Last Name</label><input id="lname" type="text" name="last_name" placeholder="Last Name" required></div>
+        <div><label for="email">Email</label><input id="email" type="email" name="email" placeholder="Email" required></div>
+      </div>
+      <label>What are you interested in?</label>
+      <div class="checks">
+        <label><input type="checkbox" name="interest[]" value="Company Event"> Company Event</label>
+        <label><input type="checkbox" name="interest[]" value="Book Tour"> Book Tour</label>
+        <label><input type="checkbox" name="interest[]" value="SCM Consulting"> SCM Consulting</label>
+        <label><input type="checkbox" name="interest[]" value="Public Speaking"> Public Speaking</label>
+        <label><input type="checkbox" name="interest[]" value="Moderator / Panelist"> Moderator / Panelist</label>
+        <label><input type="checkbox" name="interest[]" value="Academic Lectures"> Academic Lectures</label>
+      </div>
+      <label for="msg">Is there anything else you'd like to share?</label>
+      <textarea id="msg" name="message" rows="5" maxlength="400" placeholder="Type Here...."></textarea>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p><button class="btn" type="submit">Submit &rarr;</button></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot">
+      <img src="https://kerimkfuri.com/wp-content/uploads/2024/05/kerim-kfuri-brand-logo.svg" alt="Kerim Kfuri">
+      <ul class="social">
+        <li><a href="https://www.linkedin.com/in/kerimkfuri/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95V21H9z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/kerimkfuri" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3.05 0-4.1.06C4.6 2.2 2.2 4.6 2.06 7.9 2 8.95 2 9.3 2 12s0 3.05.06 4.1c.15 3.3 2.55 5.7 5.84 5.84C8.95 22 9.3 22 12 22s3.05 0 4.1-.06c3.3-.15 5.7-2.55 5.84-5.84C22 15.05 22 14.7 22 12s0-3.05-.06-4.1C21.8 4.6 19.4 2.2 16.1 2.06 15.05 2 14.7 2 12 2zm0 1.8c2.67 0 2.98 0 4.03.06 2.43.11 3.99 1.68 4.1 4.1.05 1.06.06 1.37.06 4.04s0 2.98-.06 4.03c-.11 2.43-1.67 3.99-4.1 4.1-1.05.05-1.36.06-4.03.06s-2.98 0-4.04-.06c-2.43-.11-3.99-1.68-4.1-4.1C3.81 14.98 3.8 14.67 3.8 12s0-2.98.06-4.04c.11-2.42 1.67-3.99 4.1-4.1C9.02 3.81 9.33 3.8 12 3.8z"/></svg></a></li>
+        <li><a href="https://www.youtube.com/@Kerim-Kfuri" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg></a></li>
+        <li><a href="https://x.com/Kerim_Kfuri" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg></a></li>
+        <li><a href="https://www.facebook.com/officialkerimkfuri" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 8V6.1c0-.86.2-1.3 1.53-1.3H17.5V1.5h-2.8C11.5 1.5 10.4 3.1 10.4 5.8V8H8v3.3h2.4v11.2H14V11.3h2.9L17.3 8z"/></svg></a></li>
+        <li><a href="https://www.tiktok.com/@kerimkfuri" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1 0-5.2c.27 0 .53.04.78.12V9.66a5.8 5.8 0 0 0-.78-.05A5.69 5.69 0 0 0 4.17 15.3 5.69 5.69 0 0 0 9.86 21a5.69 5.69 0 0 0 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.25-1.48z"/></svg></a></li>
+      </ul>
+    </div>
+    <div class="copy">&copy; <span id="year">2026</span> Kerim Kfuri. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  // News carousel arrows
+  const track = document.querySelector('.track');
+  document.querySelectorAll('.arrows button').forEach(b => {
+    b.addEventListener('click', () => {
+      const card = track.querySelector('.card');
+      const step = card ? card.offsetWidth + 24 : 300;
+      track.scrollBy({ left: step * Number(b.dataset.dir), behavior: 'smooth' });
+    });
+  });
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
