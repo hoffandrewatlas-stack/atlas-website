@@ -212,6 +212,8 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
   .head-logo { position: absolute; top: 0; left: var(--logo-x, calc(50% + 260px)); width: clamp(120px, 14vw, 190px); margin: 0; }
 }
 .head-cta { margin-top: 2rem; }
+.page-head--wide h1 { max-width: none; }
+@media (min-width: 760px) { .page-head--wide h1 { white-space: nowrap; } }
 .jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
 .jump a { border: 1px solid var(--rule); border-radius: 6px; padding: .45rem .9rem; font-size: .8125rem; font-weight: 600; color: var(--ink); transition: border-color .2s, color .2s; }
 .jump a:hover { border-color: var(--orange); color: var(--orange); }
