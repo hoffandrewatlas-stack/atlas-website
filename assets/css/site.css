@@ -379,7 +379,7 @@ footer { background: var(--surface); margin-top: 3rem; padding: 3.5rem 0 2rem; f
 /* Referral Network logo: over the video column, top in line with the breadcrumb */
 .page-head--ref .container { position: relative; }
 .ref-logo { display: block; height: auto; }
-.ref-logo--head { position: absolute; top: 0; right: calc((clamp(240px, 24vw, 340px) - clamp(150px, 14vw, 200px)) / 2); width: clamp(150px, 14vw, 200px); }
+.ref-logo--head { position: absolute; top: 0; right: calc(var(--gutter) + (clamp(240px, 24vw, 340px) - clamp(150px, 14vw, 200px)) / 2); width: clamp(150px, 14vw, 200px); }
 .ref-logo--stack { display: none; }
 @media (max-width: 860px) {
   .ref-logo--head { display: none; }
