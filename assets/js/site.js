@@ -69,10 +69,12 @@ if (bannerVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 // Mobile menu toggle
-btn.addEventListener('click', () => {
-  const open = menu.classList.toggle('open');
-  btn.setAttribute('aria-expanded', String(open));
-});
+if (btn && menu) {
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+}
 
 // In-page links scroll smoothly and close the mobile menu.
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -82,7 +84,97 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth' });
     history.replaceState(null, '', a.getAttribute('href'));
-    menu.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
+    if (menu) menu.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
   });
 });
+
+// Motion system: progressive, restrained and completely optional. Content stays visible
+// when JavaScript is unavailable, and every effect is disabled for reduced-motion users.
+(() => {
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const topbar = document.querySelector('.topbar');
+  const page = document.documentElement;
+
+  // A slim orange line gives long pages a quiet sense of progress.
+  const progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.append(progress);
+
+  const revealSelectors = [
+    '.page-head > .container', '.section-head', '.detail-head',
+    '.detail-grid > *', '.service', '.tile', '.faq details', '.next-card',
+    '.facts li', '.ref-block', '.ref-list li', '.timeline li',
+    '.brief-head', '.brief-card', '.footer-cols > *', '.legal-doc > *',
+    '.prose-cols > *', '.includes li', '.scm-intro', '.referral-text > *',
+    '.video-frame', '.join-cta', '.split > *'
+  ];
+  const revealItems = [...document.querySelectorAll(revealSelectors.join(','))];
+
+  revealItems.forEach((item, index) => {
+    item.classList.add('reveal');
+    const parent = item.parentElement;
+    const siblingIndex = parent ? [...parent.children].indexOf(item) : index;
+    item.style.setProperty('--reveal-delay', `${Math.min(siblingIndex, 5) * 70}ms`);
+  });
+
+  // Only switch on hidden starting states once all reveal targets are prepared.
+  page.classList.add('motion-ready');
+
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    revealItems.forEach(item => observer.observe(item));
+  } else {
+    revealItems.forEach(item => item.classList.add('is-visible'));
+  }
+
+  // Gentle depth on selected media. The range is intentionally small so the layout
+  // still feels precise and professional rather than effect-driven.
+  const parallaxItems = [];
+  const registerParallax = (element, depth) => {
+    if (!element) return;
+    element.classList.add('js-parallax-media');
+    parallaxItems.push({ element, depth });
+  };
+  registerParallax(document.querySelector('.banner > video, .banner > img'), 0.12);
+  document.querySelectorAll('.detail-media img, .vp-figure img, .video-frame video').forEach((item, index) => {
+    registerParallax(item, index % 2 ? 0.045 : 0.065);
+  });
+
+  let ticking = false;
+  const updateMotion = () => {
+    ticking = false;
+    const maxScroll = document.documentElement.scrollHeight - innerHeight;
+    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
+    progress.style.transform = `scaleX(${ratio})`;
+    if (topbar) topbar.classList.toggle('is-scrolled', scrollY > 18);
+
+    if (reducedMotion.matches) return;
+    parallaxItems.forEach(({ element, depth }) => {
+      const host = element.parentElement;
+      if (!host) return;
+      const rect = host.getBoundingClientRect();
+      if (rect.bottom < -120 || rect.top > innerHeight + 120) return;
+      const centerOffset = rect.top + rect.height / 2 - innerHeight / 2;
+      const shift = Math.max(-28, Math.min(28, -centerOffset * depth));
+      element.style.setProperty('--parallax-y', `${shift.toFixed(2)}px`);
+    });
+  };
+  const requestMotion = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateMotion);
+  };
+
+  addEventListener('scroll', requestMotion, { passive: true });
+  addEventListener('resize', requestMotion, { passive: true });
+  reducedMotion.addEventListener?.('change', requestMotion);
+  updateMotion();
+})();
