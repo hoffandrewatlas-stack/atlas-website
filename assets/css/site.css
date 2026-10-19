@@ -298,6 +298,8 @@ body { overflow-x: clip; background: linear-gradient(180deg, #fff 0%, #fff 82%, 
 .service-body { border-radius: 0 0 calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px); }
 .tile .drop { margin: 10px; border-radius: 10px; left: 0; right: 0; }
 .detail-media, .video-frame { box-shadow: 0 14px 42px rgba(31, 31, 31, .08); }
+.vp-figure { overflow: hidden; border-radius: var(--radius-sm); }
+.vp-figure img { border-radius: var(--radius-sm); }
 .detail-media .js-parallax-media, .video-frame .js-parallax-media {
   height: calc(100% + 56px);
   margin-top: -28px;
