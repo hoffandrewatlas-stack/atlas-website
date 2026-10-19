@@ -96,12 +96,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   const topbar = document.querySelector('.topbar');
   const page = document.documentElement;
 
-  // A slim orange line gives long pages a quiet sense of progress.
-  const progress = document.createElement('div');
-  progress.className = 'scroll-progress';
-  progress.setAttribute('aria-hidden', 'true');
-  document.body.append(progress);
-
   const revealSelectors = [
     '.page-head > .container', '.section-head', '.detail-head',
     '.detail-grid > *', '.service', '.tile', '.faq details', '.next-card',
@@ -144,16 +138,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     parallaxItems.push({ element, depth });
   };
   registerParallax(document.querySelector('.banner > video, .banner > img'), 0.12);
-  document.querySelectorAll('.detail-media img, .vp-figure img, .video-frame video').forEach((item, index) => {
+  document.querySelectorAll('.detail-media img, .video-frame video').forEach((item, index) => {
     registerParallax(item, index % 2 ? 0.045 : 0.065);
   });
 
   let ticking = false;
   const updateMotion = () => {
     ticking = false;
-    const maxScroll = document.documentElement.scrollHeight - innerHeight;
-    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
-    progress.style.transform = `scaleX(${ratio})`;
     if (topbar) topbar.classList.toggle('is-scrolled', scrollY > 18);
 
     if (reducedMotion.matches) return;
