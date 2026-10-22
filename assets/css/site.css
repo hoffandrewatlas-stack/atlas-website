@@ -528,7 +528,7 @@ footer {
 .page-head--vp h1 { font-size: clamp(2.5rem, 4.6vw, 4rem); }
 .vp-figure { display: block; }
 .vp-figure img { display: block; width: 100%; height: auto; }
-@media (max-width: 1023px) { .vp-split { grid-template-columns: 1fr; } }
+@media (max-width: 1023px) { .vp-split { grid-template-columns: 1fr; } .vp-figure { order: -1; } }
 /* Services grouped: Consulting, then Supply Chain Management and its four steps */
 .services--grouped { grid-template-columns: minmax(0, 1fr) minmax(0, 4fr); gap: 12px; }
 .service-group { display: flex; flex-direction: column; min-width: 0; }
@@ -579,8 +579,10 @@ footer {
 .ref-logo--head { position: absolute; top: 0; right: calc(var(--gutter) + (clamp(240px, 24vw, 340px) - clamp(150px, 14vw, 200px)) / 2); width: clamp(150px, 14vw, 200px); }
 .ref-logo--stack { display: none; }
 @media (max-width: 860px) {
-  .ref-logo--head { display: none; }
-  .ref-logo--stack { display: block; width: 160px; margin: 0 auto 1.5rem; }
+  /* Mobile: logo above the title (as on About), video straight under the title */
+  .page-head--ref .container { display: flex; flex-direction: column; }
+  .page-head--ref .crumbs { order: 0; } .page-head--ref h1 { order: 2; }
+  .ref-logo--head { position: static; order: 1; width: 110px; margin-bottom: 1.5rem; }
 }
 .video-play { position: absolute; top: 12px; right: 12px; z-index: 2; display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; padding: 0; border: 0; border-radius: 50%; background: var(--orange); color: var(--white); cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.25); transition: opacity .35s var(--ease), background .2s, transform .2s; }
 .video-play:hover { background: var(--orange-dark); transform: scale(1.06); }
@@ -601,7 +603,7 @@ footer {
 @media (max-width: 860px) {
   .referral-split { grid-template-columns: 1fr; }
   .referral-text { padding-right: 0; }
-  .referral-video { padding-left: 0; padding-top: 2rem; margin-top: 3rem; border-left: 0; border-top: 1px solid var(--ink); }
+  .referral-video { order: -1; padding: 0; margin: 0 0 3rem; border-left: 0; }
   .video-stick { position: static; margin: 0 auto; width: min(340px, 100%); }
 }
 @media (max-width: 560px) { .ref-list { grid-template-columns: 1fr; } }
