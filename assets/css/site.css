@@ -504,7 +504,7 @@ footer {
 .file-list .size { color: var(--muted); font-variant-numeric: tabular-nums; }
 .file-list button { background: none; border: 0; padding: .1rem .3rem; cursor: pointer; color: var(--muted); font-size: 1rem; line-height: 1; }
 .file-list button:hover { color: var(--error); }
-.form-submit { width: 100%; justify-content: space-between; padding: 1rem 1.25rem; font-size: .9375rem; border: 0; cursor: pointer; font-family: inherit; }
+.form-submit { align-self: flex-start; border: 0; cursor: pointer; font-family: inherit; }  /* same pill as the other buttons */
 .form-note { margin-top: .75rem; font-size: .75rem; color: var(--muted); }
 .form-done { text-align: left; padding: 1rem 0; }
 .form-done h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: .75rem; }
