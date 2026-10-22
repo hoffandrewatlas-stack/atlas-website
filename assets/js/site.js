@@ -29,19 +29,43 @@ const menu = document.getElementById('menu');
 
 // Every page opens at the top: after clicking a menu link, going back or forward, or refreshing.
 // Only a fresh click on a link to a specific section (#anchor) lands on that section.
+// Works the same on phones: mobile Safari and Chrome restore pages from the back/forward cache
+// and can reapply an old scroll position just after load, so the jump is repeated briefly.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 const navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate';
+let userMoved = false;
+['touchstart', 'wheel', 'keydown'].forEach(t => addEventListener(t, () => { userMoved = true; }, { passive: true }));
+const jumpTop = () => {
+  const root = document.documentElement;
+  const smooth = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';  // instant, not the page's smooth scrolling
+  scrollTo(0, 0);
+  root.scrollTop = 0;
+  document.body.scrollTop = 0;
+  root.style.scrollBehavior = smooth;
+};
 const goToTop = () => {
   if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-  scrollTo({ top: 0, left: 0, behavior: 'instant' });  // instant, not the page's smooth scrolling
+  userMoved = false;
+  jumpTop();
+  // Catch a late scroll restore (mainly iOS Safari) unless the visitor has started scrolling.
+  requestAnimationFrame(() => { if (!userMoved) jumpTop(); });
+  [60, 250].forEach(ms => setTimeout(() => { if (!userMoved && scrollY > 0) jumpTop(); }, ms));
 };
-if (navType !== 'navigate' || !location.hash) goToTop();
+const startsAtTop = () => navType !== 'navigate' || !location.hash;
+if (startsAtTop()) goToTop();
+addEventListener('load', () => { if (startsAtTop() && !userMoved) jumpTop(); });
 addEventListener('pageshow', e => {
   if (e.persisted) {
-    // Restored from the back/forward cache: start at the top and play the entrance animations again.
+    // Restored from the back/forward cache: close the mobile menu, start at the top
+    // and play the entrance animations again.
+    const openMenu = document.getElementById('menu');
+    const menuBtn = document.getElementById('menu-btn');
+    if (openMenu) openMenu.classList.remove('open');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     goToTop();
     document.dispatchEvent(new Event('atlas:replay'));
-  } else if (navType !== 'navigate' || !location.hash) {
+  } else if (startsAtTop()) {
     goToTop();
   }
 });
