@@ -302,6 +302,12 @@ body { overflow-x: clip; background: linear-gradient(180deg, #fff 0%, #fff 82%, 
 .service-img { border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0; }
 .service-body { border-radius: 0 0 calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px); }
 .tile .drop { margin: 10px; border-radius: 10px; left: 0; right: 0; }
+/* Portrait photo in a landscape tile: the whole photo shown, over a blurred copy of itself */
+.tile--fit { background: #050608; }
+.tile--fit > img { position: relative; object-fit: contain; }
+.tile--fit > .tile-backdrop { position: absolute; inset: 0; object-fit: cover; filter: blur(28px) brightness(.55); transform: scale(1.2); }
+.tile--fit:hover > .tile-backdrop { transform: scale(1.25); }
+.tile--fit .drop { z-index: 2; }
 .detail-media, .video-frame { box-shadow: 0 14px 42px rgba(31, 31, 31, .08); }
 .vp-figure { overflow: hidden; border-radius: var(--radius-sm); }
 .vp-figure img { border-radius: var(--radius-sm); }
