@@ -5,7 +5,8 @@
 // so the live website and the back button behave normally.
 (() => {
   if (window.self === window.top) return;
-  const page = (location.pathname.split('/').pop() || 'index.html') + location.hash;
+  // Remember the page only (not a #section), so a refresh always opens it at the top.
+  const page = location.pathname.split('/').pop() || 'index.html';
   try {
     const nav = (performance.getEntriesByType('navigation')[0] || {}).type;
     const clicked = sessionStorage.getItem('atlas:clicked');
@@ -20,17 +21,30 @@
       const a = e.target.closest('a[href]');
       if (a && a.origin === location.origin) sessionStorage.setItem('atlas:clicked', '1');
     });
-    addEventListener('hashchange', () => sessionStorage.setItem('atlas:page', (location.pathname.split('/').pop() || 'index.html') + location.hash));
   } catch (e) { /* storage unavailable: refresh simply returns to the homepage */ }
 })();
 
 const btn = document.getElementById('menu-btn');
 const menu = document.getElementById('menu');
 
-// Open every page at the top, including when returning with the back button.
-// A link to a section (#anchor) still lands on that section.
+// Every page opens at the top: after clicking a menu link, going back or forward, or refreshing.
+// Only a fresh click on a link to a specific section (#anchor) lands on that section.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-addEventListener('pageshow', () => { if (!location.hash) scrollTo(0, 0); });
+const navType = (performance.getEntriesByType('navigation')[0] || {}).type || 'navigate';
+const goToTop = () => {
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  scrollTo({ top: 0, left: 0, behavior: 'instant' });  // instant, not the page's smooth scrolling
+};
+if (navType !== 'navigate' || !location.hash) goToTop();
+addEventListener('pageshow', e => {
+  if (e.persisted) {
+    // Restored from the back/forward cache: start at the top and play the entrance animations again.
+    goToTop();
+    document.dispatchEvent(new Event('atlas:replay'));
+  } else if (navType !== 'navigate' || !location.hash) {
+    goToTop();
+  }
+});
 
 // About header logo: line its left edge up with the last link in the top menu.
 const headLogo = document.querySelector('.head-logo');
@@ -125,6 +139,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
     revealItems.forEach(item => observer.observe(item));
+
+    // Replay: hide everything again and let it animate back in as it comes into view.
+    document.addEventListener('atlas:replay', () => {
+      revealItems.forEach(item => { item.classList.remove('is-visible'); observer.observe(item); });
+      document.querySelectorAll('.banner .container > *').forEach(el => {
+        el.style.animation = 'none';
+        void el.offsetWidth;
+        el.style.animation = '';
+      });
+    });
   } else {
     revealItems.forEach(item => item.classList.add('is-visible'));
   }
