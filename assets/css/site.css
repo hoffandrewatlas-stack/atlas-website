@@ -45,6 +45,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn { display: inline-flex; align-items: center; gap: .6rem; background: var(--orange); color: var(--white); font-size: .875rem; font-weight: 600; padding: .7rem 1.1rem; border-radius: 8px; transition: background .2s; }
 .btn:hover { background: var(--orange-dark); }
 .btn--pill { border-radius: 999px; padding: .7rem 1.35rem; }  /* Start your project: same pill as the top bar button */
+.btn--sm { font-size: .8125rem; padding: .5rem 1rem; gap: .45rem; }
+.btn--sm .arrow { width: .95rem; height: .95rem; }
+.next-card--cta { display: flex; flex-direction: column; align-items: flex-start; }
+.next-card--cta p { margin-top: .5rem; }
+.next-card--cta .btn { margin-top: 1rem; }
 .arrow { width: 1.1rem; height: 1.1rem; flex: none; transition: transform .3s var(--ease); }
 .link-arrow { display: inline-flex; align-items: center; gap: .5rem; color: var(--ink); font-size: .875rem; font-weight: 600; }
 .link-arrow:hover { color: var(--orange); }
